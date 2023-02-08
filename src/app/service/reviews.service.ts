@@ -21,7 +21,6 @@ export class ReviewsService {
         id: '63e26b5516952167414879d0',
         name: 'Fire Emblem',
       },
-      __v: 0,
     },
     {
       _id: '63e270cb9d4681180b141f6c',
@@ -38,7 +37,6 @@ export class ReviewsService {
         id: '63e26b5516952167414879d0',
         name: 'Fire Emblem',
       },
-      __v: 0,
     },
     {
       _id: '63e270cb9d4681180b141f6d',
@@ -55,7 +53,6 @@ export class ReviewsService {
         id: '63e26b5516952167414879d0',
         name: 'Fire Emblem',
       },
-      __v: 0,
     },
   ];
 

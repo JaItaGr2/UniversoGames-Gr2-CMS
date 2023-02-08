@@ -7,7 +7,6 @@ export interface Review {
     reviewerName: string;
     imageUrls: string[];
     reviewedGame: ReviewedGame;
-    __v: number;
 }
 
 export interface ReviewedGame {

@@ -1,79 +1,33 @@
 import { Injectable } from '@angular/core';
 import { NewReview, Review } from '../model/review';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReviewsService {
-  private reviews: Review[] = [
-    {
-      _id: '63e270cb9d4681180b141f6b',
-      title: 'Fire Emblem Engage',
-      publicationDate: '2023-02-10',
-      content: 'Nuovo Gioco di Fire Emblem annunciato',
-      score: 10,
-      reviewerName: 'Mario Rossi',
-      imageUrls: [
-        'https://sm.ign.com/ign_it/preview/f/fire-emble/fire-emblem-engage-preview-a-loving-tribute-to-nonexistent-n_ebat.jpg',
-        'https://i.ytimg.com/vi/3xTPZpDDACU/maxresdefault.jpg',
-      ],
-      reviewedGame: {
-        id: '63e26b5516952167414879d0',
-        name: 'Fire Emblem',
-      },
-    },
-    {
-      _id: '63e270cb9d4681180b141f6c',
-      title: 'Fire Emblem Engage',
-      publicationDate: '2023-02-10',
-      content: 'Nuovo Gioco di Fire Emblem annunciato',
-      score: 10,
-      reviewerName: 'Mario Rossi',
-      imageUrls: [
-        'https://sm.ign.com/ign_it/preview/f/fire-emble/fire-emblem-engage-preview-a-loving-tribute-to-nonexistent-n_ebat.jpg',
-        'https://i.ytimg.com/vi/3xTPZpDDACU/maxresdefault.jpg',
-      ],
-      reviewedGame: {
-        id: '63e26b5516952167414879d0',
-        name: 'Fire Emblem',
-      },
-    },
-    {
-      _id: '63e270cb9d4681180b141f6d',
-      title: 'Fire Emblem Engage',
-      publicationDate: '2023-02-10',
-      content: 'Nuovo Gioco di Fire Emblem annunciato',
-      score: 10,
-      reviewerName: 'Mario Rossi',
-      imageUrls: [
-        'https://sm.ign.com/ign_it/preview/f/fire-emble/fire-emblem-engage-preview-a-loving-tribute-to-nonexistent-n_ebat.jpg',
-        'https://i.ytimg.com/vi/3xTPZpDDACU/maxresdefault.jpg',
-      ],
-      reviewedGame: {
-        id: '63e26b5516952167414879d0',
-        name: 'Fire Emblem',
-      },
-    },
-  ];
+  private apiUrl = 'https://project-works-rest-api.onrender.com/api/v1/GROUP-II/review';
+
+  constructor(private http: HttpClient) {}
 
   getReviews() {
-    return this.reviews.slice();
+    return this.http.get<Review[]>(this.apiUrl);
   }
 
-  getReview(id: string): Review | undefined {
-    return this.reviews.find((r) => r._id === id);
+  getReview(id: string) {
+    return this.http.get<Review>(`${this.apiUrl}/${id}`);
   }
 
   addReview(newReview: NewReview) {
-    //TODO:
-    //this.reviews.push(newReview);
-    console.log('add: ' + newReview);
+    return this.http.post(this.apiUrl, newReview);
+  }
+
+  updateReview(review: Review) {
+    return this.http.put(this.apiUrl, review);
   }
 
   eliminaReview(id: string) {
-    //TODO:
-    //this.reviews = this.reviews.filter((r) => r._id !== id);
-    console.log('elimina' + id);
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
 }

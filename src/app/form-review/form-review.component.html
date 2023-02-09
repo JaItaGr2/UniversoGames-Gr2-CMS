@@ -1,0 +1,36 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <input type="text" placeholder="Titolo" formControlName="title" />
+  <input
+    type="text"
+    placeholder="Data di pubblicazione"
+    formControlName="publicationDate"
+  />
+  <input type="text" placeholder="Contenuto" formControlName="content" />
+  <input type="number" min="1" max="5" placeholder="Valutazione" formControlName="score" />
+  <input type="text" placeholder="Autore Recensione" formControlName="reviewerName" />
+  
+  <div formArrayName="segniParticolari">
+    <h2>
+      URL Immagini:
+      <button type="button" (click)="onAddImageUrls()">+</button>
+    </h2>
+    <div *ngFor="let _ of imageUrlsFormArray.controls; let i = index">
+      <input
+        type="text"
+        [formControlName]="i"
+        [placeholder]="'Immagine n°' + (i + 1)"
+      />
+      <button type="button" (click)="onRemoveImageUrls(i)">-</button>
+    </div>
+  </div>
+
+  <h2>Gioco Recensito</h2>
+  <div formGroupName="reviewedGame">
+    <h4>Id:</h4>
+    <input type="text" placeholder="Id" formControlName="id" />
+    <h4>Nome:</h4>
+    <input type="text" placeholder="Nome" formControlName="nome" />
+  </div>
+
+  <button type="submit">Aggiungi</button>
+</form>

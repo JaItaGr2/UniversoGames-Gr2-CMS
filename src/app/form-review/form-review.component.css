@@ -1,7 +1,38 @@
 .form {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    margin: 2rem auto;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 2rem auto;
+  gap: 1rem;
 }
+
+/* stars */
+.stars {
+  display: inline-block;
+  font-size: 60px;
+  font-family: Times;
+  line-height: 1;
+}
+
+.stars::before {
+  --percent: calc(var(--rating) / 10 * 100%);
+
+  content: "★★★★★";
+  letter-spacing: 3px;
+  background: linear-gradient(
+    90deg,
+    #fc0 var(--percent),
+    #fff var(--percent)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.form-stars-p {
+  background: #eee;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+/* end stars */

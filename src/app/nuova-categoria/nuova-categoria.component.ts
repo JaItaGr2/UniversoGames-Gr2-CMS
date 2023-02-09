@@ -1,13 +1,15 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, } from '@angular/core';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
-import { Categoria } from '../service/categorie.service';
+import { Router } from '@angular/router';
+import { CategorieService } from '../service/categorie.service';
+
 @Component({
   selector: 'app-nuova-categoria',
   templateUrl: './nuova-categoria.component.html',
   styleUrls: ['./nuova-categoria.component.css']
 })
-export class NuovaCategoriaComponent implements OnInit {
-  form: FormGroup = new FormControl({
+export class NuovaCategoriaComponent {
+  form: FormGroup = new FormGroup({
     id: new FormControl('',
     [
       Validators.required,
@@ -16,4 +18,21 @@ export class NuovaCategoriaComponent implements OnInit {
     name: new FormControl('')
   });
 
+  constructor(private categorieService: CategorieService, private router: Router ) {}
+
+onSubmit(){
+  if (this.form.invalid){
+    alert('Attenzione, compilare i campi obbligatori');
+    return;
+  }
+
+  this.categorieService.addCategoria(this.form.value);
+
+  this.form.reset();
+  this.router.navigateByUrl('/');
 }
+}
+
+
+
+

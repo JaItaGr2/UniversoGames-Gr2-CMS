@@ -4,7 +4,7 @@ import { Videogioco } from "../model/videogioco";
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
-export class CategorieService{
+export class VideogiochiService{
     private apiUrl = 'https://project-works-rest-api.onrender.com/api/v1/GROUP-II/videogames';
 
     constructor(private http: HttpClient) {}
@@ -23,5 +23,9 @@ export class CategorieService{
 
     deleteVideogioco(id: string){
         return this.http.delete(this.apiUrl + '/' + id);
+    }
+
+    updateVideogioco(videogioco: Videogioco){
+        return this.http.put(this.apiUrl, videogioco);
     }
 }

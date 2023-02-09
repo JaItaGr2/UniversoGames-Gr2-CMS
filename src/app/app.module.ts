@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -8,10 +9,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FormNewsComponent } from './form-news/form-news.component';
 
+import { NuovaCategoriaComponent } from './nuova-categoria/nuova-categoria.component';
+import { NuovoVideogiocoComponent } from './nuovo-videogioco/nuovo-videogioco.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
-    FormReviewComponent
+    NuovaCategoriaComponent,
+    NuovoVideogiocoComponent,
+    FormReviewComponent,
     FormNewsComponent
   ],
   imports: [

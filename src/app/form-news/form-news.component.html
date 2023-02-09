@@ -1,1 +1,27 @@
-<p>form-news works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <input type="text" placeholder="titolo" formControlName="title" /><br>
+    <input type="text" placeholder="categoria" formControlName="category" /><br>
+    <input type="text" placeholder="immagine" formControlName="imageUrl" /><br>
+    <input type="text" placeholder="contenuto" formControlName="content" /><br>
+    <input type="text" placeholder="data_pubblicazione" formControlName="publicationDate" /><br>
+    <input type="text" placeholder="nome_autore" formControlName="authorName" /><br>
+    
+    <div class="tags-box" formArrayName="tags">
+        <label for="tags">Tags
+          <button style="margin-left: 1rem;" class="add-button" type="button" (click)="onAddTags()">Add</button>
+        </label>
+          <div 
+              *ngFor="let t of tagsFormArray.controls; 
+                      let i = index">
+          <input type="text"
+                  id="tags"
+                  name="tags"
+                  placeholder="tag nº{{ i + 1 }}"
+                  [formControlName]="i" formControlName="0"/>
+                  <button class="delete-button" type="button" (click)="onDeleteTags(i)">Remove</button>
+          </div> 
+      </div>
+     
+    <button type="submit">Salva</button>
+  </form>

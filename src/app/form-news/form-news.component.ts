@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Route, Router } from '@angular/router';
+import { newsService } from '../service/news.service';
 
 @Component({
   selector: 'app-form-news',
@@ -17,6 +19,11 @@ export class FormNewsComponent {
     tags: new FormArray([new FormControl('')]),
   });
 
+  constructor(
+    private newsService: newsService,
+    private router: Router,
+  ){}
+
   get tagsFormArray(): FormArray{
     return this.form.get('tags') as FormArray;
   }
@@ -31,5 +38,10 @@ export class FormNewsComponent {
 
   onSubmit(){
     if(this.form.invalid) alert('Compilare tutti i campi!');
+
+    this.newsService.addNews(this.form.value);
+
+    this.form.reset();
+    this.router.navigateByUrl('/');
   }
 }

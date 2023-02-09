@@ -6,13 +6,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormReviewComponent } from './form-review/form-review.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { FormNewsComponent } from './form-news/form-news.component';
 
 import { NuovaCategoriaComponent } from './nuova-categoria/nuova-categoria.component';
 import { NuovoVideogiocoComponent } from './nuovo-videogioco/nuovo-videogioco.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ListaNewsComponent } from './lista-news/lista-news.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NuovaCategoriaComponent,
     NuovoVideogiocoComponent,
     FormReviewComponent,
-    FormNewsComponent
+    FormNewsComponent,
+    ListaNewsComponent
   ],
   imports: [
     BrowserModule,

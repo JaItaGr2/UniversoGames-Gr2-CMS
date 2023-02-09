@@ -22,4 +22,6 @@ export class ListaNewsComponent implements OnInit{
       this.dati$ = this.newsService.getNews();
     })
   }
+
+  onClickEdit(id: string) {}
 }

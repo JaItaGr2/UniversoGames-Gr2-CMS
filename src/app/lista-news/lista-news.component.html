@@ -1,1 +1,35 @@
-<p>lista-news works!</p>
+<body>
+    <section>
+        <div class="list">
+            <div class="list-box">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Titolo</th>
+                            <th>Categoria</th>
+                            <th>Contenuto</th>
+                            <th>Data Pubblicazione</th>
+                            <th>Autore</th>
+                            <th>Tags</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of dati$ | async">
+                            
+                            <td>{{ p.title }}</td>
+                            <td>{{ p.category }}</td>
+                            <td>{{ p.content }}</td>
+                            <td>{{ p.publicationDate }}</td>
+                            <td>{{ p.authorName }}</td>
+                            <td>{{ p.tags }}</td>
+                            <td>
+                                <button (click)="onClickDelete(p.id)">Delete</button>
+                                <a [routerLink]="['form-news', p.id]" (click)="onClickEdit(p.id)">Edit</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>

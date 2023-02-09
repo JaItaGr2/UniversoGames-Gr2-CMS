@@ -4,6 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormReviewComponent } from './form-review/form-review.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FormNewsComponent } from './form-news/form-news.component';
 
 import { NuovaCategoriaComponent } from './nuova-categoria/nuova-categoria.component';
 import { NuovoVideogiocoComponent } from './nuovo-videogioco/nuovo-videogioco.component';
@@ -13,13 +17,15 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     NuovaCategoriaComponent,
-    NuovoVideogiocoComponent
+    NuovoVideogiocoComponent,
+    FormReviewComponent,
+    FormNewsComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

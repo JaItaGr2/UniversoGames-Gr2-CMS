@@ -23,10 +23,10 @@ export class ReviewsService {
   }
 
   updateReview(review: Review) {
-    return this.http.put(this.apiUrl, review);
+    return this.http.put(`${this.apiUrl}/${review._id}`, review);
   }
 
-  eliminaReview(id: string) {
+  deleteReview(id: string) {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 

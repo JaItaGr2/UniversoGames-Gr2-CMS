@@ -26,7 +26,7 @@ export class FormReviewComponent implements OnInit {
   isEditMode = false;
   idReviewDaModificare = '';
 
-  scoreRating?: number;
+  //scoreRating?: number;
 
   constructor(
     private reviewsService: ReviewsService,
@@ -44,6 +44,8 @@ export class FormReviewComponent implements OnInit {
         );
 
         if (reviewDaModificare) {
+          console.log(reviewDaModificare);
+          console.log(this.idReviewDaModificare);
           this.form = new FormGroup({
             title: new FormControl(''),
             publicationDate: new FormControl(''),
@@ -79,10 +81,20 @@ export class FormReviewComponent implements OnInit {
       return;
     }
 
+    let formResponse = this.form.getRawValue();
+    formResponse.__v = 0;
+
     if (this.isEditMode) {
-      this.reviewsService.updateReview(this.form.value);
+      formResponse._id = this.idReviewDaModificare;
+      console.log(formResponse);
+      this.reviewsService.updateReview(formResponse).subscribe(() => {
+        this.reviewsService.getReview(this.idReviewDaModificare);
+      });
     } else {
-      this.reviewsService.addReview(this.form.value);
+      console.log(formResponse);
+      this.reviewsService.addReview(formResponse).subscribe(() => {
+        this.reviewsService.getReviews();
+      });
     }
 
     this.form.reset();
@@ -90,4 +102,6 @@ export class FormReviewComponent implements OnInit {
     this.idReviewDaModificare = '';
     this.router.navigateByUrl('/');
   }
+
+  objectForm() {}
 }

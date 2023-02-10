@@ -1,0 +1,135 @@
+.main{
+    display:flex;
+    margin-top: 7rem;
+}
+.container{
+    margin: auto;
+    height: 60%;
+    width: 50%;
+    text-align: center;
+}
+.review{
+    background-color: white;
+    height: auto;
+    margin: 8%;
+    border-radius: 7px;
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.178), -1px -1px 7px rgba(0, 0, 0, 0.178)
+}
+#person-img{
+    border-radius: 70px;
+    margin: 3% 0 2% 0;
+    box-shadow: 5px -3px 4px grey;
+}
+
+#info{
+    padding: 10px 20px;
+    font-size: 90%;
+}
+#name{
+    font-size: 90%;
+    color: rgb(146, 127, 255)
+}
+
+#date {
+    color: lightgray;
+    font-size: 90%;
+    font-style: italic;
+}
+
+#score {
+    font-size: 90%;
+    font-weight: 500;
+}
+
+#game {
+    font-weight: 500;
+}
+
+.discover{
+    display: flex;
+}
+
+button {
+    margin-top: 1rem;
+    background: transparent;
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    text-shadow: 0px 0px 0px transparent;
+}
+  
+button:hover {
+    background: transparent;
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    text-shadow: 1px 1px 5px  grey;
+}
+  
+button:active {
+    outline: none;
+    border: none;
+}
+  
+button:focus {
+    outline: 0;
+}
+
+.underline{
+    width: 10%;
+    border-bottom: solid rgb(146, 127, 255) 3px;
+    margin: auto;
+    margin-top: 10px;   
+}
+
+.random-btn{
+    border: solid 2px rgb(146, 127, 255);
+    border-radius: 40px;
+    padding :4px;
+    margin-bottom: 10px;
+}
+.random-btn:hover {
+    border: solid 2px transparent;
+    background-color: rgb(146, 127, 255);
+    color: white;
+    border-radius: 40px;
+    padding: 4px;
+}
+
+@media(max-width: 600px) {
+    .container{
+        margin: auto;
+        height: 90%;
+        width: 90%;
+        text-align: center;
+    }
+}
+
+/* stars */
+.stars {
+    display: inline-block;
+    font-size: 20px;
+    font-family: Times;
+    line-height: 1;
+  }
+  
+  .stars::before {
+    --percent: calc(var(--rating) / 10 * 100%);
+  
+    content: "★★★★★";
+    letter-spacing: 3px;
+    background: linear-gradient(
+      90deg,
+      #fc0 var(--percent),
+      #fff var(--percent)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .form-stars-p {
+    background: #eee;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+  /* end stars */

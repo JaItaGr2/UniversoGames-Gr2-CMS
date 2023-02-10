@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +10,6 @@ import { NuovaCategoriaComponent } from './nuova-categoria/nuova-categoria.compo
 import { NuovoVideogiocoComponent } from './nuovo-videogioco/nuovo-videogioco.component';
 import { ListaVideogiochiComponent } from './lista-videogiochi/lista-videogiochi.component';
 import { ListaCategorieComponent } from './lista-categorie/lista-categorie.component';
-
 
 @NgModule({
   declarations: [
@@ -26,6 +25,7 @@ import { ListaCategorieComponent } from './lista-categorie/lista-categorie.compo
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
   ],
   providers: [],

@@ -23,8 +23,8 @@
                             <td>{{ p.authorName }}</td>
                             <td>{{ p.tags }}</td>
                             <td>
-                                <button (click)="onClickDelete(p.id)">Delete</button>
-                                <a [routerLink]="['form-news', p.id]" (click)="onClickEdit(p.id)">Edit</a>
+                                <button (click)="onClickDelete(p._id)">Delete</button>
+                                <a [routerLink]="['form-news', p._id]" (click)="onClickEdit(p._id)">Edit</a>
                             </td>
                         </tr>
                     </tbody>

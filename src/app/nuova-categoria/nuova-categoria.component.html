@@ -1,6 +1,5 @@
 <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
 <h1>Nuova Categoria</h1>
-    <input type="text" placeholder="id" formControlName="id" />
     <input type="text" placeholder="name" formControlName="name" />
-<button type="submit">Aggiungi</button>
+<button type="submit">{{ isEditMode ? "Modifica" : "Aggiungi" }}</button>
 </form>

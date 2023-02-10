@@ -18,8 +18,8 @@ export class ListaCategorieComponent implements OnInit{
     this.categorie$ = this.categorieService.getCategorie();
   }
 
-  onClickDelete(id: string){
-    this.categorieService.deleteCategoria(id).subscribe(() =>{
+  onClickDelete(_id: string){
+    this.categorieService.deleteCategoria(_id).subscribe(() =>{
       this.categorie$ = this.categorieService.getCategorie();
     })
   }

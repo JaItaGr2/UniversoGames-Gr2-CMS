@@ -1,5 +1,5 @@
 export interface Videogioco {
-    id: string;
+    _id: string;
     title: string;
     category: string;
     releaseDate: string;

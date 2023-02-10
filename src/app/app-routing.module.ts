@@ -21,6 +21,7 @@ const routes: Routes =
     path:'nuovo-videogioco',
     component: NuovoVideogiocoComponent,
   },
+
   {
     path: 'new-news',
     component: FormNewsComponent,
@@ -39,11 +40,11 @@ const routes: Routes =
   },
   {
     path:'lista-videogiochi/:id',
-    component: ListaVideogiochiComponent,
+    component: NuovoVideogiocoComponent,
   },
   {
     path:'lista-categorie/:id',
-    component: ListaCategorieComponent,
+    component: NuovaCategoriaComponent,
   },
 ];
 

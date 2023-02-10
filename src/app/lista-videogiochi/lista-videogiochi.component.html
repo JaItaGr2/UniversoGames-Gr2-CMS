@@ -20,7 +20,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let v of videogiochi$ | async"> 
-                            <td>{{ v.id }}</td>
+                            <td>{{ v._id }}</td>
                             <td>{{ v.title }}</td>
                             <td>{{ v.category }}</td>
                             <td>{{ v.releaseDate }}</td>
@@ -29,7 +29,7 @@
                             <td>{{ v.publisher }}</td>
                             <td>{{ v.numberOfPlayers }}</td>
                             <td></td>
-                            <td *ngFor="let l of v.languages ">
+                            <!--<td *ngFor="let l of v.languages ">
                                 <div *ngFor="let i of l.voice">
                                     {{ i }}
                                 </div>
@@ -40,9 +40,9 @@
                                 </div>
                             </td>
                             <td>
-                                <button (click)="onClickDelete(v.id)">Elimina</button>
-                                <a [routerLink]="['nuovo-videogioco', v.id]" (click)="onClickEdit(v.id)"></a>
-                            </td>
+                                <button (click)="onClickDelete(v._id)">Elimina</button>
+                                <a [routerLink]="['nuovo-videogioco', v._id]" (click)="onClickEdit(v._id)">Edit</a>
+                            </td>-->
                         </tr>
                     </tbody>
                 </table>

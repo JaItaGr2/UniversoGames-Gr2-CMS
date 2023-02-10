@@ -1,0 +1,26 @@
+<body>
+    <section>
+        <div class="contenitore-listacomp">
+            <div class="scatola-listacomp">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Console</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of categorie$ | async">
+                            <td>{{ c.id }}</td>
+                            <td>{{ c.name }}</td>
+                            <td>
+                                <button (click)="onClickDelete(c.id)">Elimina</button>
+                                <a [routerLink]="['nuova-categoria', c.id]" (click)="onClickEdit(c.id)" ></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>

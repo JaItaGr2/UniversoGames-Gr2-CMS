@@ -1,0 +1,52 @@
+<body>
+    <section>
+        <div class="contenitore-listavid"> 
+            <div class="scatola-listavid">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Titolo</th>
+                            <th>Console</th>
+                            <th>Data di uscita</th>
+                            <th>Genere</th>
+                            <th>Software house</th>
+                            <th>Publisher</th>
+                            <th>Numero di giocatori</th>
+                            <th>Linguaggio:</th>
+                            <th>Doppiaggio</th>
+                            <th>Sottotitoli</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let v of videogiochi$ | async"> 
+                            <td>{{ v.id }}</td>
+                            <td>{{ v.title }}</td>
+                            <td>{{ v.category }}</td>
+                            <td>{{ v.releaseDate }}</td>
+                            <td>{{ v.genre }}</td>
+                            <td>{{ v.softwareHouse }}</td>
+                            <td>{{ v.publisher }}</td>
+                            <td>{{ v.numberOfPlayers }}</td>
+                            <td></td>
+                            <td *ngFor="let l of v.languages ">
+                                <div *ngFor="let i of l.voice">
+                                    {{ i }}
+                                </div>
+                            </td>
+                            <td *ngFor="let t of v.languages">
+                                <div *ngFor="let z of t.text">
+                                    {{ z }}
+                                </div>
+                            </td>
+                            <td>
+                                <button (click)="onClickDelete(v.id)">Elimina</button>
+                                <a [routerLink]="['nuovo-videogioco', v.id]" (click)="onClickEdit(v.id)"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>

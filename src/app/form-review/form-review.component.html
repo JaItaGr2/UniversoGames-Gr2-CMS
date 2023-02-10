@@ -6,14 +6,35 @@
     formControlName="publicationDate"
   />
   <input type="text" placeholder="Contenuto" formControlName="content" />
-  <input type="number" min="1" max="5" placeholder="Valutazione" formControlName="score" />
-  <input type="text" placeholder="Autore Recensione" formControlName="reviewerName" />
-  
-  <div formArrayName="segniParticolari">
-    <h2>
+
+  <div class="form-stars-p">
+    <h4>Valutazione (1/10)</h4>
+    <input
+      type="number"
+      min="1"
+      max="10"
+      placeholder="6"
+      formControlName="score"
+      [(ngModel)]="scoreRating"
+    />
+    <div
+      class="stars"
+      [ngStyle]="{ '--rating': scoreRating ? scoreRating : 0 }"
+      aria-label="Rating of this product is 2.3 out of 5."
+    ></div>
+  </div>
+
+  <input
+    type="text"
+    placeholder="Autore Recensione"
+    formControlName="reviewerName"
+  />
+
+  <div formArrayName="imageUrls">
+    <h3>
       URL Immagini:
       <button type="button" (click)="onAddImageUrls()">+</button>
-    </h2>
+    </h3>
     <div *ngFor="let _ of imageUrlsFormArray.controls; let i = index">
       <input
         type="text"
@@ -24,13 +45,13 @@
     </div>
   </div>
 
-  <h2>Gioco Recensito</h2>
   <div formGroupName="reviewedGame">
+    <h3>Gioco Recensito</h3>
     <h4>Id:</h4>
     <input type="text" placeholder="Id" formControlName="id" />
     <h4>Nome:</h4>
-    <input type="text" placeholder="Nome" formControlName="nome" />
+    <input type="text" placeholder="Nome" formControlName="name" />
   </div>
 
-  <button type="submit">Aggiungi</button>
+  <button type="submit">{{ isEditMode ? "Modifica" : "Aggiungi" }}</button>
 </form>

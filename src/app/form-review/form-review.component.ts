@@ -3,6 +3,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ReviewsService } from '../service/reviews.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Review } from '../model/review';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-form-review',
@@ -26,7 +27,7 @@ export class FormReviewComponent implements OnInit {
   isEditMode = false;
   idReviewDaModificare = '';
 
-  //scoreRating?: number;
+  scoreRating?: number;
 
   constructor(
     private reviewsService: ReviewsService,
@@ -39,26 +40,26 @@ export class FormReviewComponent implements OnInit {
       this.idReviewDaModificare = params['id'];
       if (this.idReviewDaModificare) {
         this.isEditMode = true;
-        const reviewDaModificare = this.reviewsService.getReview(
-          this.idReviewDaModificare
-        );
-
-        if (reviewDaModificare) {
-          console.log(reviewDaModificare);
-          console.log(this.idReviewDaModificare);
-          this.form = new FormGroup({
-            title: new FormControl(''),
-            publicationDate: new FormControl(''),
-            content: new FormControl(''),
-            score: new FormControl(undefined),
-            reviewerName: new FormControl(''),
-            imageUrls: new FormArray([new FormControl('')]),
-            reviewedGame: new FormGroup({
-              id: new FormControl(''),
-              name: new FormControl(''),
-            }),
-          });
-        }
+        this.reviewsService.getReview(this.idReviewDaModificare).pipe(
+          map((val: Review) => {
+            console.log('ok');
+            console.log(val);
+            return this.form = new FormGroup({
+              title: new FormControl(val.title),
+              publicationDate: new FormControl(val.publicationDate),
+              content: new FormControl(val.content),
+              score: new FormControl(val.score),
+              reviewerName: new FormControl(val.reviewerName),
+              imageUrls: new FormArray(
+                val.imageUrls.map((step) => new FormControl(step))
+              ),
+              reviewedGame: new FormGroup({
+                id: new FormControl(val.reviewedGame.id),
+                name: new FormControl(val.reviewedGame.name),
+              }),
+            });
+          })
+        ).subscribe(console.log);
       }
     });
   }
@@ -102,6 +103,4 @@ export class FormReviewComponent implements OnInit {
     this.idReviewDaModificare = '';
     this.router.navigateByUrl('/');
   }
-
-  objectForm() {}
 }

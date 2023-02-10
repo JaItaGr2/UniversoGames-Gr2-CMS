@@ -6,14 +6,14 @@
     <input type="text" placeholder="console" formControlName="genre" />
     <input type="text" placeholder="publisher" formControlName="publisher" />
     <input type="number" placeholder="numero di giocatori" formControlName="numberOfPlayers" />
-<div formArrayName="languages">
+    <div formGroupName="languages">
     <h1>Lingue</h1>
-    <div *ngFor="let _ of languagesFormArray.controls; let i = index" [formGroupName]="i">
         <div formArrayName="voice">
             <h2>
             Doppiaggio
             <button type="button" (click)="onAddVoice()">+</button>
             </h2>
+            <input type="text" placeholder="lingua doppiaggio">
             <div *ngFor="let _ of voiceFormArray.controls; let i = index">
                 <input
                 type="text"
@@ -28,6 +28,7 @@
             Sottotitoli
             <button type="button" (click)="onAddText()">+</button>
             </h2>
+            <input type="text" placeholder="lingua sottotitoli">
             <div *ngFor="let _ of textFormArray.controls; let i = index">
                 <input
                 type="text"
@@ -38,6 +39,7 @@
             </div>
         </div>
     </div>
-</div>
+    <h3>Immagine di copertina</h3>
+    <input type="text" placeholder="URL" formControlName="coverImage">
 <button type="submit">{{ isEditMode ? "Modifica" : "Aggiungi" }}</button>
 </form>

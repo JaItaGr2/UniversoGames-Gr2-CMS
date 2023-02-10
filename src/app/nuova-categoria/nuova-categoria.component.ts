@@ -52,6 +52,8 @@ export class NuovaCategoriaComponent {
       this.categorieService.addCategoria(this.form.value);
     }
 
+  console.log(this.form.value);
+
   this.form.reset();
   this.isEditMode = false;
   this.idCategoriaDaModificare = '';

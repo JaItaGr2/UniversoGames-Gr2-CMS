@@ -7,10 +7,9 @@ export interface Videogioco {
     softwareHouse: string;
     publisher: string;
     numberOfPlayers: number;
-    languages: Linguaggio[];
-}
-
-export interface Linguaggio{
-    voice: string[];
-    text: string[];
+    languages: {
+        voice: string[];
+        text: string[];
+    };
+    coverImage: string;
 }

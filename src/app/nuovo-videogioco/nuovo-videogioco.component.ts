@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { VideogiochiService } from '../service/videogiochi.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './nuovo-videogioco.component.html',
   styleUrls: ['./nuovo-videogioco.component.css']
 })
-export class NuovoVideogiocoComponent {
+export class NuovoVideogiocoComponent implements OnInit{
   form: FormGroup = new FormGroup({
     _id: new FormControl('',
     [
@@ -21,16 +21,16 @@ export class NuovoVideogiocoComponent {
     softwareHouse: new FormControl(''),
     publisher: new FormControl(''),
     numberOfPlayers: new FormControl(),
-    languages: new FormArray([
-      new FormGroup({
+    languages: new FormGroup
+    ({
         voice: new FormArray([
           new FormControl(''),
         ]),
         text: new FormArray([
           new FormControl(''),
         ]),
-      })
-    ])
+    }),
+    coverImage: new FormControl(''),
   });
   
   isEditMode = false;
@@ -51,7 +51,7 @@ export class NuovoVideogiocoComponent {
       
       if(videogiocoDaModificare){
         this.form = new FormGroup({
-          id: new FormControl('',
+          _id: new FormControl('',
     [
       Validators.required,
       Validators.minLength(24),
@@ -63,25 +63,24 @@ export class NuovoVideogiocoComponent {
     softwareHouse: new FormControl(''),
     publisher: new FormControl(''),
     numberOfPlayers: new FormControl(),
-    languages: new FormArray([
-      new FormGroup({
+    languages: new FormGroup({
         voice: new FormArray([
           new FormControl(''),
         ]),
         text: new FormArray([
           new FormControl(''),
         ]),
-      })
-    ])
+      }),
+    coverImage: new FormControl(''),
         });
       }
     }
 
     });
-  }
+  };
 
-  get languagesFormArray(): FormArray{
-    return this.form.get('languages') as FormArray;
+  get languagesFormGroup() : FormGroup{
+    return this.form.get('languages') as FormGroup;
   }
 
   get voiceFormArray() : FormArray{
@@ -92,22 +91,10 @@ export class NuovoVideogiocoComponent {
     return this.form.get('text') as FormArray;
   }
 
-  onAddLanguages(){
-    this.languagesFormArray.push(
-      new FormGroup({voice: new FormArray([
-        new FormControl(''),
-      ]),
-      text: new FormArray([
-        new FormControl(''),
-      ]),})
-    )
+  onAddVoice(){
+    this.voiceFormArray.push( new FormControl(),);
   }
 
-  onAddVoice(){
-    this.voiceFormArray.push(
-      new FormControl(''),
-    );
-  }
   onRemoveVoice(index: number){
     this.voiceFormArray.removeAt(index);
   }

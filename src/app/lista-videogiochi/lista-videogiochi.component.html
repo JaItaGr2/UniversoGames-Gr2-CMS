@@ -16,6 +16,7 @@
                             <th>Linguaggio:</th>
                             <th>Doppiaggio</th>
                             <th>Sottotitoli</th>
+                            <th>Immagine Videogioco</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,20 +30,13 @@
                             <td>{{ v.publisher }}</td>
                             <td>{{ v.numberOfPlayers }}</td>
                             <td></td>
-                            <!--<td *ngFor="let l of v.languages ">
-                                <div *ngFor="let i of l.voice">
-                                    {{ i }}
-                                </div>
-                            </td>
-                            <td *ngFor="let t of v.languages">
-                                <div *ngFor="let z of t.text">
-                                    {{ z }}
-                                </div>
-                            </td>
+                            <td>{{ v.languages.voice }}</td>
+                            <td>{{ v.languages.text }}</td>
+                            <td>{{ v.coverImage }}</td>
                             <td>
                                 <button (click)="onClickDelete(v._id)">Elimina</button>
                                 <a [routerLink]="['nuovo-videogioco', v._id]" (click)="onClickEdit(v._id)">Edit</a>
-                            </td>-->
+                            </td>
                         </tr>
                     </tbody>
                 </table>

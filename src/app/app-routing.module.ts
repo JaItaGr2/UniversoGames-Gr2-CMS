@@ -6,6 +6,8 @@ import { ListaCategorieComponent } from './lista-categorie/lista-categorie.compo
 import { ListaVideogiochiComponent } from './lista-videogiochi/lista-videogiochi.component';
 import { NuovaCategoriaComponent } from './nuova-categoria/nuova-categoria.component';
 import { NuovoVideogiocoComponent } from './nuovo-videogioco/nuovo-videogioco.component';
+import { FormReviewComponent } from './form-review/form-review.component';
+import { ListaReviewsComponent } from './lista-reviews/lista-reviews.component';
 
 const routes: Routes = 
 [
@@ -31,6 +33,14 @@ const routes: Routes =
     component: FormNewsComponent,
   },
   {
+    path: 'form-review',
+    component: FormReviewComponent,
+  },
+  {
+    path: 'form-review/:id',
+    component: FormReviewComponent,
+  },
+  {
     path:'lista-videogiochi',
     component: ListaVideogiochiComponent,
   },
@@ -39,12 +49,12 @@ const routes: Routes =
     component: ListaCategorieComponent,
   },
   {
-    path:'lista-videogiochi/:id',
-    component: NuovoVideogiocoComponent,
+    path:'lista-news',
+    component: ListaNewsComponent,
   },
   {
-    path:'lista-categorie/:id',
-    component: NuovaCategoriaComponent,
+    path:'lista-reviews',
+    component: ListaReviewsComponent,
   },
 ];
 

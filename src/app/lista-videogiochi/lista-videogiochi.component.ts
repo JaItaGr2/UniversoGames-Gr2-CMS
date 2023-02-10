@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Linguaggio, Videogioco } from '../model/videogioco';
+import { Videogioco } from '../model/videogioco';
 import { VideogiochiService } from '../service/videogiochi.service';
 
 @Component({
@@ -11,7 +11,6 @@ import { VideogiochiService } from '../service/videogiochi.service';
 export class ListaVideogiochiComponent implements OnInit{
 
   videogiochi$!: Observable<Videogioco[]>;
-  languages$!: Observable<Linguaggio[]>;
 
   constructor(private videogiochiService: VideogiochiService){}
 

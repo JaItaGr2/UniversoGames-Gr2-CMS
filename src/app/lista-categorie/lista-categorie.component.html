@@ -11,11 +11,11 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let c of categorie$ | async">
-                            <td>{{ c.id }}</td>
+                            <td>{{ c._id }}</td>
                             <td>{{ c.name }}</td>
                             <td>
-                                <button (click)="onClickDelete(c.id)">Elimina</button>
-                                <a [routerLink]="['nuova-categoria', c.id]" (click)="onClickEdit(c.id)" ></a>
+                                <button (click)="onClickDelete(c._id)">Elimina</button>
+                                <a [routerLink]="['nuova-categoria', c._id]" (click)="onClickEdit(c._id)" >Aggiorna</a>
                             </td>
                         </tr>
                     </tbody>

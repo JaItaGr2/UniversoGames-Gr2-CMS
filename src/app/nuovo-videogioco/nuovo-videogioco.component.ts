@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { VideogiochiService } from '../service/videogiochi.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-nuovo-videogioco',
   templateUrl: './nuovo-videogioco.component.html',
   styleUrls: ['./nuovo-videogioco.component.css']
 })
-export class NuovoVideogiocoComponent {
+export class NuovoVideogiocoComponent implements OnInit{
   form: FormGroup = new FormGroup({
-    id: new FormControl('',
+    _id: new FormControl('',
     [
       Validators.required,
       Validators.minLength(24),
@@ -21,21 +21,67 @@ export class NuovoVideogiocoComponent {
     softwareHouse: new FormControl(''),
     publisher: new FormControl(''),
     numberOfPlayers: new FormControl(),
-    languages: new FormArray([
-      new FormGroup({
+    languages: new FormGroup
+    ({
         voice: new FormArray([
-          new FormControl(''),
           new FormControl(''),
         ]),
         text: new FormArray([
           new FormControl(''),
+        ]),
+    }),
+    coverImage: new FormControl(''),
+  });
+  
+  isEditMode = false;
+  
+  idVideogiocoDaModificare='';
+
+
+  constructor(private videogiochiService: VideogiochiService, private router: Router,private route: ActivatedRoute ) {}
+
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.idVideogiocoDaModificare = params['id'];
+      if(this.idVideogiocoDaModificare){
+        this.isEditMode = true;
+        const videogiocoDaModificare = this.videogiochiService.getVideogioco(
+          this.idVideogiocoDaModificare
+        );
+      
+      if(videogiocoDaModificare){
+        this.form = new FormGroup({
+          _id: new FormControl('',
+    [
+      Validators.required,
+      Validators.minLength(24),
+    ]),
+    title: new FormControl(''),
+    category: new FormControl(''),
+    releaseDate: new FormControl(''),
+    genre: new FormControl(''),
+    softwareHouse: new FormControl(''),
+    publisher: new FormControl(''),
+    numberOfPlayers: new FormControl(),
+    languages: new FormGroup({
+        voice: new FormArray([
           new FormControl(''),
         ]),
-      })
-    ])
-  });
+        text: new FormArray([
+          new FormControl(''),
+        ]),
+      }),
+    coverImage: new FormControl(''),
+        });
+      }
+    }
 
-  constructor(private videogiochiService: VideogiochiService, private router: Router ) {}
+    });
+  };
+
+  get languagesFormGroup() : FormGroup{
+    return this.form.get('languages') as FormGroup;
+  }
 
   get voiceFormArray() : FormArray{
     return this.form.get('voice') as FormArray;
@@ -46,10 +92,9 @@ export class NuovoVideogiocoComponent {
   }
 
   onAddVoice(){
-    this.voiceFormArray.push(
-      new FormControl(''),
-    );
+    this.voiceFormArray.push( new FormControl(),);
   }
+
   onRemoveVoice(index: number){
     this.voiceFormArray.removeAt(index);
   }
@@ -69,11 +114,17 @@ export class NuovoVideogiocoComponent {
       alert('Attenzione, compilare i campi obbligatori');
       return;
     }
-  
+  if (this.isEditMode){
+    this.videogiochiService.updateVideogioco(this.form.value);
+  } else {
     this.videogiochiService.addVideogioco(this.form.value);
+  }
+    
   
-    this.form.reset();
-    this.router.navigateByUrl('/');
+  this.form.reset();
+  this.isEditMode = false;
+  this.idVideogiocoDaModificare = '';
+  this.router.navigateByUrl('/');
   }
 
 

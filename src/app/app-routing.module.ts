@@ -23,6 +23,7 @@ const routes: Routes =
     path:'nuovo-videogioco',
     component: NuovoVideogiocoComponent,
   },
+
   {
     path: 'new-news',
     component: FormNewsComponent,

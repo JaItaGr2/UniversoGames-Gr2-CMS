@@ -1,0 +1,30 @@
+<body>
+    <main class="main">
+        <section class="container">
+            <div class="title">
+                <h2> Our reviews</h2>
+                <div class="underline"></div>
+            </div>
+            <!-- Review Starts Here -->
+            <article class="review" *ngFor="let l of listaReview$ | async">
+              <p id="game">{{ l.reviewedGame.name }}</p>
+                <div class="imagecontainer">
+                    <img src="{{ l.imageUrls }}" id="person-img" alt="photo" height="70px" width="70px">
+                </div>
+                <!-- Stars -->
+                <div class="stars"
+                     [ngStyle]="{'--rating': l.score}"
+                      aria-label="Rating of this product is 2.3 out of 5.">
+                </div>
+                <!-- Content -->
+                <h4 id="title">{{ l.title }}</h4>
+                <p id="name">{{ l.reviewerName }}</p>
+                <p id="date">{{ l.publicationDate }}</p>
+                <p id="info">{{ l.content }}</p>
+                <button [routerLink]="['/form-review', l._id]" class="random-btn">Modifica</button>
+                <button (click)="onDelete(l._id)" class="random-btn">Elimina</button>
+            </article>
+        </section>
+    </main>  
+  </body>
+  

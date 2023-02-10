@@ -7,6 +7,7 @@ import { ListaVideogiochiComponent } from './lista-videogiochi/lista-videogiochi
 import { NuovaCategoriaComponent } from './nuova-categoria/nuova-categoria.component';
 import { NuovoVideogiocoComponent } from './nuovo-videogioco/nuovo-videogioco.component';
 import { FormReviewComponent } from './form-review/form-review.component';
+import { ListaReviewsComponent } from './lista-reviews/lista-reviews.component';
 
 const routes: Routes = 
 [
@@ -50,10 +51,10 @@ const routes: Routes =
     path:'lista-news',
     component: ListaNewsComponent,
   },
-  /*{
+  {
     path:'lista-reviews',
     component: ListaReviewsComponent,
-  },*/
+  },
 ];
 
 @NgModule({

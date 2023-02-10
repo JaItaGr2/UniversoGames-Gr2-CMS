@@ -12,6 +12,7 @@ import { ListaNewsComponent } from './lista-news/lista-news.component';
 import { ListaVideogiochiComponent } from './lista-videogiochi/lista-videogiochi.component';
 import { ListaCategorieComponent } from './lista-categorie/lista-categorie.component';
 import { HeaderComponent } from './header/header.component';
+import { ListaReviewsComponent } from './lista-reviews/lista-reviews.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HeaderComponent } from './header/header.component';
     ListaVideogiochiComponent,
     ListaCategorieComponent,
     HeaderComponent,
+    ListaReviewsComponent,
   ],
   imports: [
     BrowserModule,

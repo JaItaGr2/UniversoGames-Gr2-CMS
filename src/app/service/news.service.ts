@@ -12,7 +12,11 @@ export class newsService{
         return this.http.get<news[]>(this.apiUrl);
     }
 
-    postNews(newNews: Omit<news, 'id'>) {
+    getNew(id: string){
+        return this.http.get<news>(`${this.apiUrl}/${id}`);
+    }
+
+    addNews(newNews: Omit<news, 'id'>) {
         return this.http.post(this.apiUrl, newNews);
     }
 
@@ -20,9 +24,7 @@ export class newsService{
         return this.http.delete(this.apiUrl + '/' + id);
     }
 
-    /*
     editNews(id: string, editNews: news) {
         return this.http.put(this.apiUrl, editNews);
     }
-    */
 }

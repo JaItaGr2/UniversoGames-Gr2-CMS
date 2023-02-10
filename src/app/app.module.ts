@@ -8,6 +8,7 @@ import { FormReviewComponent } from './form-review/form-review.component';
 import { FormNewsComponent } from './form-news/form-news.component';
 import { NuovaCategoriaComponent } from './nuova-categoria/nuova-categoria.component';
 import { NuovoVideogiocoComponent } from './nuovo-videogioco/nuovo-videogioco.component';
+import { ListaNewsComponent } from './lista-news/lista-news.component';
 import { ListaVideogiochiComponent } from './lista-videogiochi/lista-videogiochi.component';
 import { ListaCategorieComponent } from './lista-categorie/lista-categorie.component';
 
@@ -18,8 +19,9 @@ import { ListaCategorieComponent } from './lista-categorie/lista-categorie.compo
     NuovoVideogiocoComponent,
     FormReviewComponent,
     FormNewsComponent,
+    ListaNewsComponent,
     ListaVideogiochiComponent,
-    ListaCategorieComponent
+    ListaCategorieComponent,
   ],
   imports: [
     BrowserModule,

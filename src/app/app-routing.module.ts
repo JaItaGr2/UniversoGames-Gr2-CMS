@@ -6,6 +6,7 @@ import { ListaCategorieComponent } from './lista-categorie/lista-categorie.compo
 import { ListaVideogiochiComponent } from './lista-videogiochi/lista-videogiochi.component';
 import { NuovaCategoriaComponent } from './nuova-categoria/nuova-categoria.component';
 import { NuovoVideogiocoComponent } from './nuovo-videogioco/nuovo-videogioco.component';
+import { FormReviewComponent } from './form-review/form-review.component';
 
 const routes: Routes = 
 [
@@ -30,6 +31,14 @@ const routes: Routes =
     component: FormNewsComponent,
   },
   {
+    path: 'form-review',
+    component: FormReviewComponent,
+  },
+  {
+    path: 'form-review/:id',
+    component: FormReviewComponent,
+  },
+  {
     path:'lista-videogiochi',
     component: ListaVideogiochiComponent,
   },
@@ -38,13 +47,13 @@ const routes: Routes =
     component: ListaCategorieComponent,
   },
   {
-    path:'lista-videogiochi/:id',
-    component: ListaVideogiochiComponent,
+    path:'lista-news',
+    component: ListaNewsComponent,
   },
-  {
-    path:'lista-categorie/:id',
-    component: ListaCategorieComponent,
-  },
+  /*{
+    path:'lista-reviews',
+    component: ListaReviewsComponent,
+  },*/
 ];
 
 @NgModule({

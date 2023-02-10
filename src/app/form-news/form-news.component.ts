@@ -84,6 +84,4 @@ export class FormNewsComponent implements OnInit{
     this.idnewsdamodificare = '';
     this.router.navigateByUrl('/');
   }
-
-  objectForm(){}
 }

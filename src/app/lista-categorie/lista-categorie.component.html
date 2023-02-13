@@ -5,13 +5,11 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Console</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let c of categorie$ | async">
-                            <td>{{ c._id }}</td>
                             <td>{{ c.name }}</td>
                             <td>
                                 <button (click)="onClickDelete(c._id)">Elimina</button>
@@ -22,8 +20,8 @@
                         </tr>
                     </tbody>
                 </table>
-                <button [routerLink]="['/nuova-categoria']" class="aggiungi">Nuova Categoria</button>
             </div>
         </div>
+        <button [routerLink]="['/nuova-categoria']" class="aggiungi">Nuova Categoria</button>
     </section>
 </body>

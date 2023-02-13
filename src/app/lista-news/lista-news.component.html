@@ -1,3 +1,4 @@
+<!-- 
 <body>
     <section>
         <div class="list">
@@ -40,3 +41,31 @@
         </div>
     </section>
 </body>
+
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>Actions Buttons</mat-card-title>
+          <mat-card-subtitle>Start</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+      <br>
+
+-->
+
+<div *ngFor="let p of dati$ | async">
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ p.title }}</mat-card-title>
+          <mat-card-subtitle>{{ p.category }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions align="end">
+          <button mat-button (click)="onClickDelete(p._id)">DELETE</button>
+          <button mat-button [routerLink]="['/form-news', p._id]" (click)="onClickEdit(p._id)">EDIT</button>
+        </mat-card-actions>
+      </mat-card>
+</div>

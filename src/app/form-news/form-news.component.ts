@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { news } from '../model/news';
 import { newsService } from '../service/news.service';
@@ -12,12 +12,12 @@ import { map } from 'rxjs';
 })
 export class FormNewsComponent implements OnInit{
   form: FormGroup = new FormGroup({
-    title: new FormControl(''),
-    category: new FormControl(''),
-    imageUrl: new FormControl(''),
-    content: new FormControl(''),
-    publicationDate: new FormControl(''),
-    authorName: new FormControl(''),
+    title: new FormControl('',[Validators.required]),
+    category: new FormControl('',[Validators.required]),
+    imageUrl: new FormControl('',[Validators.required]),
+    content: new FormControl('',[Validators.required]),
+    publicationDate: new FormControl('',[Validators.required]),
+    authorName: new FormControl('',[Validators.required]),
     tags: new FormArray([new FormControl('')]),
   });
 

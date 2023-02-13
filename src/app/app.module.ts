@@ -13,6 +13,9 @@ import { ListaVideogiochiComponent } from './lista-videogiochi/lista-videogiochi
 import { ListaCategorieComponent } from './lista-categorie/lista-categorie.component';
 import { HeaderComponent } from './header/header.component';
 import { ListaReviewsComponent } from './lista-reviews/lista-reviews.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule} from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +36,8 @@ import { ListaReviewsComponent } from './lista-reviews/lista-reviews.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

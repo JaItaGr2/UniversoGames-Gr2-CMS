@@ -15,11 +15,14 @@
                             <td>{{ c.name }}</td>
                             <td>
                                 <button (click)="onClickDelete(c._id)">Elimina</button>
-                                <a [routerLink]="['nuova-categoria', c._id]" (click)="onClickEdit(c._id)" >Aggiorna</a>
+                                <button [routerLink]="['/nuova-categoria', c._id]" class="random-btn">
+                                    Edit
+                                </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <button [routerLink]="['/nuova-categoria']" class="aggiungi">Nuova Categoria</button>
             </div>
         </div>
     </section>

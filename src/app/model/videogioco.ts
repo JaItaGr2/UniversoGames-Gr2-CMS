@@ -13,3 +13,5 @@ export interface Videogioco {
     };
     coverImage: string;
 }
+
+export type NewVideogioco = Omit<Videogioco, '_id'>;

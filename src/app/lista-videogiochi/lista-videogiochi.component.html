@@ -35,11 +35,14 @@
                             <td>{{ v.coverImage }}</td>
                             <td>
                                 <button (click)="onClickDelete(v._id)">Elimina</button>
-                                <a [routerLink]="['nuovo-videogioco', v._id]" (click)="onClickEdit(v._id)">Edit</a>
+                                <button [routerLink]="['/nuovo-videogioco', v._id]" class="edit">
+                                    Edit
+                                </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <button [routerLink]="['/nuovo-videogioco']" class="aggiungi">Nuovo videogioco</button>
             </div>
         </div>
     </section>

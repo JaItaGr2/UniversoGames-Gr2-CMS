@@ -14,8 +14,8 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         <tr *ngFor="let p of dati$ | async">
-                            
                             <td>{{ p.title }}</td>
                             <td>{{ p.category }}</td>
                             <td>{{ p.content }}</td>
@@ -24,10 +24,17 @@
                             <td>{{ p.tags }}</td>
                             <td>
                                 <button (click)="onClickDelete(p._id)">Delete</button>
-                                <a [routerLink]="['form-news', p._id]" (click)="onClickEdit(p._id)">Edit</a>
+                                <a [routerLink]="['/form-news', p._id]" (click)="onClickEdit(p._id)">Edit</a>
                             </td>
+
                         </tr>
+    
                     </tbody>
+
+                    <div class = "add">
+                    <button [routerLink]="['/form-news']">Aggiungi News</button>
+                    </div>
+                   
                 </table>
             </div>
         </div>

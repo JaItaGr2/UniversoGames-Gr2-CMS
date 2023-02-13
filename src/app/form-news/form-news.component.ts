@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { news } from '../model/news';
 import { newsService } from '../service/news.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-form-news',
@@ -34,19 +36,22 @@ export class FormNewsComponent implements OnInit{
       
       if(this.idnewsdamodificare){
         this.editmode = true;
-        const newsdamodificare = this.newsService.getNew(this.idnewsdamodificare);
-
-        if(newsdamodificare){
-          this.form = new FormGroup({
-            title: new FormControl(''),
-            category: new FormControl(''),
-            imageUrl: new FormControl(''),
-            content: new FormControl(''),
-            publicationDate: new FormControl(''),
-            authorName: new FormControl(''),
-            tags: new FormArray([new FormControl('')]),
-          });
-        }
+        
+        this.newsService.getNew(this.idnewsdamodificare).pipe(
+          map((val: news)=>{
+            return this.form = new FormGroup({
+              title: new FormControl(val.title),
+              category: new FormControl(val.category),
+              imageUrl: new FormControl(val.imageUrl),
+              content: new FormControl(val.content),
+              publicationDate: new FormControl(val.publicationDate),
+              authorName: new FormControl(val.authorName),
+              tags: new FormArray(
+                val.tags.map((pro)=> new FormControl(pro))
+              ),
+            });
+          })
+        ).subscribe(console.log);
       }
     });
   }
@@ -64,6 +69,11 @@ export class FormNewsComponent implements OnInit{
   }
 
   onSubmit(){
+    if(this.form.invalid){
+      alert('Compilare tutti i campi!');
+      return;
+    }
+
     let formResponse = this.form.getRawValue();
     formResponse.__v = 0;
 

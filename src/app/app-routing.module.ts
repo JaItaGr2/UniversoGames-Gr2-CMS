@@ -23,9 +23,8 @@ const routes: Routes =
     path:'nuovo-videogioco',
     component: NuovoVideogiocoComponent,
   },
-
   {
-    path: 'new-news',
+    path: 'form-news',
     component: FormNewsComponent,
   },
   {

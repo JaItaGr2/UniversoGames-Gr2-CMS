@@ -14,32 +14,40 @@ import { ListaCategorieComponent } from './lista-categorie/lista-categorie.compo
 import { HeaderComponent } from './header/header.component';
 import { ListaReviewsComponent } from './lista-reviews/lista-reviews.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NuovaCategoriaComponent,
-    NuovoVideogiocoComponent,
-    FormReviewComponent,
-    FormNewsComponent,
-    ListaNewsComponent,
-    ListaVideogiochiComponent,
-    ListaCategorieComponent,
-    HeaderComponent,
-    ListaReviewsComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NuovaCategoriaComponent,
+        NuovoVideogiocoComponent,
+        FormReviewComponent,
+        FormNewsComponent,
+        ListaNewsComponent,
+        ListaVideogiochiComponent,
+        ListaCategorieComponent,
+        HeaderComponent,
+        ListaReviewsComponent,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatChipsModule,
+    ]
 })
 export class AppModule { }

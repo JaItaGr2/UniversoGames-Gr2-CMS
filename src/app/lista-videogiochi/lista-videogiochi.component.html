@@ -12,7 +12,7 @@
                             <th>Software house</th>
                             <th>Publisher</th>
                             <th>Numero di giocatori</th>
-                            <th>Linguaggio:</th>
+                            <!--<th>Linguaggio:</th>-->
                             <th>Doppiaggio</th>
                             <th>Sottotitoli</th>
                             <th>Immagine Videogioco</th>
@@ -27,7 +27,6 @@
                             <td>{{ v.softwareHouse }}</td>
                             <td>{{ v.publisher }}</td>
                             <td>{{ v.numberOfPlayers }}</td>
-                            <td></td>
                             <td>{{ v.languages.voice }}</td>
                             <td>{{ v.languages.text }}</td>
                             <td>{{ v.coverImage }}</td>
@@ -43,7 +42,7 @@
                 <button [routerLink]="['/nuovo-videogioco']" class="aggiungi">Nuovo videogioco</button>
             </div>
         </div>
-    <div class="ricerca">
+    <!--<div class="ricerca">
         <label>criterio di ricerca</label>
         <select id="categoria">
             <option selected>Cerca tutto</option>
@@ -56,6 +55,6 @@
         </select>
         <input type="text" class="keyword">
         <button>Cerca</button>
-    </div>
+    </div>-->
     </section>
 </body>

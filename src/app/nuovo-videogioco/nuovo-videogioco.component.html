@@ -1,3 +1,43 @@
+<!--<h1>Nuovo Videogioco</h1>
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="titolo" formControlName="title" />
+    <input type="text" placeholder="console" formControlName="category" />
+    <input type="text" placeholder="data di rilascio" formControlName="releaseDate" />
+    <input type="text" placeholder="genere" formControlName="genre" />
+    <input type="text" placeholder="software house" formControlName="softwareHouse">
+    <input type="text" placeholder="publisher" formControlName="publisher" />
+    <input type="number" placeholder="numero di giocatori" formControlName="numberOfPlayers" />
+    <div formGroupName="languages">
+    <h1>Lingue</h1>
+        <div formArrayName="voice">
+            <h2>
+            Doppiaggio
+            <button type="button" (click)="onAddVoice()">+</button>
+            </h2>
+            <div *ngFor="let _ of voiceFormArray.controls; let i = index">
+                <input
+                type="text"
+                [formControlName]="i"
+                [placeholder]="'linguaggio ' + (i+1)"
+                />
+                <button type="button" (click)="onRemoveVoice(i)">-</button>
+            </div>
+        </div> 
+        <div formArrayName="text">
+            <h2>
+            Sottotitoli
+            <button type="button" (click)="onAddText()">+</button>
+            </h2>
+            <div *ngFor="let _ of textFormArray.controls; let i = index">
+                <input
+                type="text"
+                [formControlName]="i"
+                [placeholder]="'linguaggio ' + (i+1)"
+                />
+                <button type="button" (click)="onRemoveText(i)">-</button>
+         </div>-->
+         
+<!-- modifiche main? -->
 <div class="container">
     <form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit()">
     

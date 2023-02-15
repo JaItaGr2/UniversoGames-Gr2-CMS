@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  isLogged = false;
+  isLogged = true;
 
   isLoggedChanged = new Subject<boolean>();
 

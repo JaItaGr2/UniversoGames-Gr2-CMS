@@ -13,6 +13,7 @@ import { ListaVideogiochiComponent } from './lista-videogiochi/lista-videogiochi
 import { ListaCategorieComponent } from './lista-categorie/lista-categorie.component';
 import { HeaderComponent } from './header/header.component';
 import { ListaReviewsComponent } from './lista-reviews/lista-reviews.component';
+import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
@@ -33,6 +34,7 @@ import {MatChipsModule} from '@angular/material/chips';
         ListaCategorieComponent,
         HeaderComponent,
         ListaReviewsComponent,
+        LoginComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],
@@ -48,6 +50,8 @@ import {MatChipsModule} from '@angular/material/chips';
         MatFormFieldModule,
         MatInputModule,
         MatChipsModule,
-    ]
+    ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

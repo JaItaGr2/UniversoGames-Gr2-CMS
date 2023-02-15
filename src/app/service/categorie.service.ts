@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Categoria } from "../model/categoria";
+import { Categoria, NewCategoria } from "../model/categoria";
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
@@ -13,18 +13,18 @@ export class CategorieService{
     }
 
     getCategoria(id: string){
-        return this.http.get<Categoria>(this.apiUrl + '/' + id);
+        return this.http.get<Categoria>(`${this.apiUrl}/${id}`);
     }
 
-    addCategoria(newCategoria: Omit<Categoria, 'id'>){
+    addCategoria(newCategoria: NewCategoria){
         return this.http.post(this.apiUrl, newCategoria);
     }
 
     deleteCategoria(id: string){
-        return this.http.delete(this.apiUrl + '/' + id);
+        return this.http.delete(`${this.apiUrl}/${id}`);
     }
 
     updateCategoria(categoria: Categoria){
-        return this.http.put(this.apiUrl, categoria);
+        return this.http.put(`${this.apiUrl}/${categoria._id}`, categoria);
     }
 }

@@ -34,6 +34,7 @@ import {MatChipsModule} from '@angular/material/chips';
         ListaCategorieComponent,
         HeaderComponent,
         ListaReviewsComponent,
+        LoginComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],
@@ -50,5 +51,8 @@ import {MatChipsModule} from '@angular/material/chips';
         MatInputModule,
         MatChipsModule,
     ]
+    ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

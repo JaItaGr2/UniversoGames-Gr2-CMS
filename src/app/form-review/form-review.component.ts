@@ -77,8 +77,8 @@ export class FormReviewComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.invalid) {
-      alert('Attenzione, compilare i campi obbligatori!');
+    if(this.form.invalid){
+      alert('Compilare tutti i campi!');
       return;
     }
 

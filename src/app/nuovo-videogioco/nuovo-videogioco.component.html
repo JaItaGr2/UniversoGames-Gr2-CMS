@@ -1,4 +1,4 @@
-<h1>Nuovo Videogioco</h1>
+<!--<h1>Nuovo Videogioco</h1>
 <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <input type="text" placeholder="titolo" formControlName="title" />
     <input type="text" placeholder="console" formControlName="category" />
@@ -35,10 +35,114 @@
                 [placeholder]="'linguaggio ' + (i+1)"
                 />
                 <button type="button" (click)="onRemoveText(i)">-</button>
+         </div>-->
+         
+<!-- modifiche main? -->
+<div class="container">
+    <form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="example-full-width">
+          <mat-label>Titolo</mat-label>
+          <input matInput formControlName="title" />
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+            <mat-label>Software House</mat-label>
+            <input matInput formControlName="softwareHouse" />
+          </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+            <mat-label>Categoria</mat-label>
+            <input matInput formControlName="category" />
+          </mat-form-field></td>
+          </tr>
+          <tr>
+          <td><mat-form-field class="example-full-width">
+            <mat-label>Data Rilascio</mat-label>
+            <input matInput formControlName="releaseDate" />
+          </mat-form-field></td>
+          <td><mat-form-field class="example-full-width">
+            <mat-label>Image URL</mat-label>
+            <input matInput formControlName="coverImage" />
+          </mat-form-field></td></tr>
+          <tr>
+        <td><mat-form-field class="example-full-width">
+          <mat-label>Console</mat-label>
+          <input matInput formControlName="genre" />
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+          <mat-label>Publisher</mat-label>
+          <input matInput formControlName="publisher" />
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+            <mat-label>N Giocatori</mat-label>
+            <input matInput formControlName="numberOfPlayers" />
+          </mat-form-field></td>
+      </tr></table>
+    
+      <div formGroupName="languages">
+            <div formArrayName="voice">
+                <h2>
+                
+                <section style="margin-left: .5rem;">
+                    <div class="example-label"></div>
+                    <div class="example-button-row">
+                      <button type="button" (click)="onAddVoice()" mat-raised-button>Add Language +</button>
+                    </div>
+                  </section>
+
+                </h2>
+                <div class="flexare" *ngFor="let _ of voiceFormArray.controls; let i = index">
+                    <input
+                    type="text"
+                    [formControlName]="i"
+                    [placeholder]="'lang ' + (i+1)"
+                    style="margin-left: .5rem; margin-right: .2rem; margin-top: .1rem;"
+                    />
+
+                    <section>
+                        <div class="flexare">
+                        <div class="example-label"></div>
+                        <div class="example-button-row">
+                          <button type="button" (click)="onRemoveVoice(i)" mat-stroked-button>Remove -</button>
+                        </div>
+                        </div>
+                      </section>
+
+                </div>
+            </div> 
+            <div formArrayName="text">
+                
+                <section style="margin-left: .5rem;">
+                    <div class="example-label"></div>
+                    <div class="example-button-row">
+                      <button type="button" (click)="onAddText()" mat-raised-button>Add Subtitles +</button>
+                    </div>
+                  </section>
+
+                <div class="flexare" *ngFor="let _ of textFormArray.controls; let i = index">
+                    <input
+                    type="text"
+                    [formControlName]="i"
+                    [placeholder]="'Sub Lang ' + (i+1)"
+                    style="margin-left: .5rem; margin-right: .2rem; margin-top: .1rem;"
+                    />
+
+                    <section>
+                        <div class="example-label"></div>
+                        <div class="example-button-row">
+                          <button type="button" (click)="onRemoveText(i)" mat-stroked-button>Remove -</button>
+                        </div>
+                    </section>
+                      
+                </div>
             </div>
+        </div>        
+    
+      <section style="margin-left: .5rem; margin-top: 2rem;">
+        <div class="example-button-row">
+            <button type="submit" mat-raised-button color="primary">{{ isEditMode ? "Modify" : "Add Game +" }}</button>
         </div>
+      </section>
+    
+    </form>
     </div>
-    <h3>Immagine di copertina</h3>
-    <input type="text" placeholder="URL" formControlName="coverImage">
-<button type="submit">{{ isEditMode ? "Modifica" : "Aggiungi" }}</button>
-</form>

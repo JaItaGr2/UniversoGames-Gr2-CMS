@@ -13,28 +13,44 @@ import { ListaVideogiochiComponent } from './lista-videogiochi/lista-videogiochi
 import { ListaCategorieComponent } from './lista-categorie/lista-categorie.component';
 import { HeaderComponent } from './header/header.component';
 import { ListaReviewsComponent } from './lista-reviews/lista-reviews.component';
+import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule} from '@angular/material/card';
+import { MatButtonModule} from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon'; 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NuovaCategoriaComponent,
-    NuovoVideogiocoComponent,
-    FormReviewComponent,
-    FormNewsComponent,
-    ListaNewsComponent,
-    ListaVideogiochiComponent,
-    ListaCategorieComponent,
-    HeaderComponent,
-    ListaReviewsComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NuovaCategoriaComponent,
+        NuovoVideogiocoComponent,
+        FormReviewComponent,
+        FormNewsComponent,
+        ListaNewsComponent,
+        ListaVideogiochiComponent,
+        ListaCategorieComponent,
+        HeaderComponent,
+        ListaReviewsComponent,
+        LoginComponent,
+    ],
+    imports: [
+      BrowserModule,
+      AppRoutingModule,
+      ReactiveFormsModule,
+      FormsModule,
+      HttpClientModule,
+      BrowserAnimationsModule,
+      MatCardModule,
+      MatButtonModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatChipsModule,
+      MatIconModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

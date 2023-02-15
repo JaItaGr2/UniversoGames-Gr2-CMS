@@ -1,10 +1,14 @@
+<div class="container">
 <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+
   <input type="text" placeholder="Titolo" formControlName="title" />
+
   <input
     type="text"
     placeholder="Data di pubblicazione"
     formControlName="publicationDate"
   />
+
   <input type="text" placeholder="Contenuto" formControlName="content" />
 
   <div class="form-stars-p">
@@ -16,11 +20,7 @@
       placeholder="6"
       formControlName="score"
     />
-    <!--<div   [(ngModel)]="scoreRating"
-      class="stars"
-      [ngStyle]="{ '--rating': scoreRating ? scoreRating : 0 }"
-      aria-label="Rating of this product is 2.3 out of 5."
-    ></div>-->
+
   </div>
 
   <input
@@ -54,3 +54,92 @@
 
   <button type="submit">{{ isEditMode ? "Modifica" : "Aggiungi" }}</button>
 </form>
+</div>
+
+<!-- <div class="container">
+  <form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example-full-width">
+        <mat-label>Titolo</mat-label>
+        <input matInput formControlName="title" />
+      </mat-form-field></td>
+
+      <td><mat-form-field class="example-full-width">
+        <mat-label>Data Pubblicazione</mat-label>
+        <input matInput formControlName="publicationDate" />
+      </mat-form-field></td>
+
+      <td><mat-form-field class="example-full-width">
+        <mat-label>Score (1-10)</mat-label>
+        <input matInput formControlName="score" />
+      </mat-form-field></td>
+
+      <td><mat-form-field class="example-full-width">
+        <mat-label>Id gioco recensito</mat-label>
+        <input matInput formControlName="id" />
+      </mat-form-field></td>
+
+      <tr>
+      <td><mat-form-field class="example-full-width">
+        <mat-label>Gioco recensito</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field></td></tr>
+
+    </tr></table>
+  
+
+    <p>
+      <mat-form-field class="example-full-width">
+        <mat-label>Contenuto</mat-label>
+        <textarea matInput placeholder="Ex. 100 Main St" formControlName="content"></textarea>
+      </mat-form-field>
+    </p>
+  
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example-full-width">
+        <mat-label>Nome Reviewer</mat-label>
+        <input matInput formControlName="reviewerName" />
+      </mat-form-field></td>
+    </tr></table>
+  
+
+    <div formArrayName="imageUrls">
+      
+      <section style="margin-left: .5rem;">
+        <div class="example-label"></div>
+        <div class="example-button-row">
+          <button type="button" (click)="onAddImageUrls()" mat-raised-button>Add Img URL</button>
+        </div>
+      </section>
+
+
+      <div class="flexare" *ngFor="let _ of imageUrlsFormArray.controls; let i = index">
+        <input
+          type="text"
+          [formControlName]="i"
+          [placeholder]="'Immagine n°' + (i + 1)"
+          style="margin-left: .5rem; margin-right: .2rem; margin-top: .1rem;"
+        />
+
+        <section>
+          <div class="example-label"></div>
+          <div class="example-button-row">
+            <button type="button" (click)="onRemoveImageUrls(i)" mat-stroked-button>Remove -</button>
+          </div>
+      </section>
+
+      </div>
+    </div>
+  
+
+    <section style="margin-left: .5rem;">
+      <div class="example-button-row">
+        <button type="submit" mat-raised-button color="primary">{{ isEditMode ? "Modify" : "Save" }}</button>
+      </div>
+    </section>
+  
+  </form>
+</div>
+
+-->

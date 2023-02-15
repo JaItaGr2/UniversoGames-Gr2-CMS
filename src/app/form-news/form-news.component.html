@@ -1,27 +1,67 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<div class="container">
+<form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <input type="text" placeholder="titolo" formControlName="title" /><br>
-    <input type="text" placeholder="categoria" formControlName="category" /><br>
-    <input type="text" placeholder="immagine" formControlName="imageUrl" /><br>
-    <input type="text" placeholder="contenuto" formControlName="content" /><br>
-    <input type="text" placeholder="data_pubblicazione" formControlName="publicationDate" /><br>
-    <input type="text" placeholder="nome_autore" formControlName="authorName" /><br>
-    
-    <div class="tags-box" formArrayName="tags">
-        <label for="tags">Tags
-          <button style="margin-left: 1rem;" class="add-button" type="button" (click)="onAddTags()">Add</button>
-        </label>
-          <div 
-              *ngFor="let t of tagsFormArray.controls; 
-                      let i = index">
-          <input type="text"
-                  id="tags"
-                  name="tags"
-                  placeholder="tag nº{{ i + 1 }}"
-                  [formControlName]="i" formControlName="0"/>
-                  <button class="delete-button" type="button" (click)="onDeleteTags(i)">Remove</button>
-          </div> 
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Titolo</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Categoria</mat-label>
+      <input matInput formControlName="category" />
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Image Url</mat-label>
+      <input matInput formControlName="imageUrl" />
+    </mat-form-field></td>
+  </tr></table>
+
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Contenuto</mat-label>
+      <textarea matInput placeholder="Ex. 100 Main St" formControlName="content" ></textarea>
+    </mat-form-field>
+  </p>
+
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Data Pubblicazione</mat-label>
+      <input matInput formControlName="publicationDate" />
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Nome Autore</mat-label>
+      <input matInput formControlName="authorName" />
+    </mat-form-field></td>
+  </tr></table>
+
+    <mat-form-field class="example-chip-list" appearance="fill">
+      <mat-label>Tags</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Tags selection" formArrayName="tags">
+        <mat-chip-row
+          class="cipColor"
+          *ngFor="let tag of tagsFormArray.value; let i = index"
+          (removed)="remove(i)"
+        >
+          {{ tag }}
+          <button matChipRemove [attr.aria-label]="'remove ' + tag">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input
+        placeholder="Nuovo tag..."
+        #tagInput
+        [formControl]="tagCtrl"
+        [matChipInputFor]="chipGrid"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-form-field>
+
+    <section style="margin-left: 0.5rem">
+      <div class="example-button-row">
+        <button type="submit" mat-raised-button color="primary">Save</button>
       </div>
-
-    <button type="submit">Salva</button>
+    </section>
   </form>
+</div>

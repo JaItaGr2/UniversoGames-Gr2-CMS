@@ -1,5 +1,24 @@
-<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+<div class="container">
+<!-- <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
 <h1>Nuova Categoria</h1>
     <input type="text" placeholder="name" formControlName="name" />
 <button type="submit">{{ isEditMode ? "Modifica" : "Aggiungi" }}</button>
+</form> -->
+
+<form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example-full-width">
+        <mat-label>Categoria</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field></td>
+    </tr></table>
+
+  <section style="margin-left: .5rem;">
+    <div class="example-button-row">
+      <button type="submit" mat-raised-button color="primary">{{ isEditMode ? "Modifica" : "Aggiungi" }}>Save</button>
+    </div>
+  </section>
+
 </form>
+</div>

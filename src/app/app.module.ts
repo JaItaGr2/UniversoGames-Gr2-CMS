@@ -14,6 +14,7 @@ import { ListaCategorieComponent } from './lista-categorie/lista-categorie.compo
 import { HeaderComponent } from './header/header.component';
 import { ListaReviewsComponent } from './lista-reviews/lista-reviews.component';
 import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

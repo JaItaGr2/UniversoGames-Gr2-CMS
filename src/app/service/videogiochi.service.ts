@@ -27,4 +27,6 @@ export class VideogiochiService{
     updateVideogioco(videogioco: Videogioco){
         return this.http.put(`${this.apiUrl}/${videogioco._id}`, videogioco);
     }
+
+ 
 }

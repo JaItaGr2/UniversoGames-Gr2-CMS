@@ -42,9 +42,9 @@
                 <button [routerLink]="['/nuovo-videogioco']" class="aggiungi">Nuovo videogioco</button>
             </div>
         </div>
-    <!--<div class="ricerca">
-        <label>criterio di ricerca</label>
-        <select id="categoria">
+    <div class="ricerca">
+        <label>ricerca per keyword</label>
+        <!--<select id="categoria">
             <option selected>Cerca tutto</option>
             <option value="title">titolo</option>
             <option value="category">categoria</option>
@@ -52,9 +52,9 @@
             <option value="genre">genere</option>
             <option value="softwareHouse">Software House</option>
             <option value="publisher">publisher</option>
-        </select>
-        <input type="text" class="keyword">
-        <button>Cerca</button>
-    </div>-->
+        </select>-->
+        <input type="text" class="input" [(ngModel)]="keyRicerca">
+        <button onclick=ricerca(keyRicerca)>Cerca</button>
+    </div>
     </section>
 </body>

@@ -1,9 +1,10 @@
 <h1>Nuovo Videogioco</h1>
 <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <input type="text" placeholder="titolo" formControlName="title" />
-    <input type="text" placeholder="categoria" formControlName="category" />
+    <input type="text" placeholder="console" formControlName="category" />
     <input type="text" placeholder="data di rilascio" formControlName="releaseDate" />
-    <input type="text" placeholder="console" formControlName="genre" />
+    <input type="text" placeholder="genere" formControlName="genre" />
+    <input type="text" placeholder="software house" formControlName="softwareHouse">
     <input type="text" placeholder="publisher" formControlName="publisher" />
     <input type="number" placeholder="numero di giocatori" formControlName="numberOfPlayers" />
     <div formGroupName="languages">
@@ -13,7 +14,6 @@
             Doppiaggio
             <button type="button" (click)="onAddVoice()">+</button>
             </h2>
-            <input type="text" placeholder="lingua doppiaggio">
             <div *ngFor="let _ of voiceFormArray.controls; let i = index">
                 <input
                 type="text"
@@ -28,7 +28,6 @@
             Sottotitoli
             <button type="button" (click)="onAddText()">+</button>
             </h2>
-            <input type="text" placeholder="lingua sottotitoli">
             <div *ngFor="let _ of textFormArray.controls; let i = index">
                 <input
                 type="text"

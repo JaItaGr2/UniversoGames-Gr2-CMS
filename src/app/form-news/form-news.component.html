@@ -1,114 +1,38 @@
-<!-- <div class="container">
-
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-
-  <div class="form">
-
-    <input type="text" placeholder="Titolo" formControlName="title" />
-    <input type="text" placeholder="Categoria" formControlName="category" />
-    <input type="text" placeholder="Immagine" formControlName="imageUrl" />
-    <input id="cont" type="text" placeholder="Contenuto" formControlName="content" />
-    <input type="text" placeholder="Data_pubblicazione" formControlName="publicationDate" />
-    <input type="text" placeholder="Nome_autore" formControlName="authorName" />
-
-  </div>
-
-  <div class="tag" formArrayName="tags">
-
-        <label for="tags">
-          <button style="margin-left: 1rem;" class="add-button" type="button" (click)="onAddTags()">Add Tag</button>
-        </label>
-        
-          <div 
-              *ngFor="let t of tagsFormArray.controls; 
-                      let i = index">
-          <input type="text"
-                  id="tags"
-                  name="tags"
-                  placeholder="tag nº{{ i + 1 }}"
-                  [formControlName]="i" formControlName="0"/>
-
-                  <button class="delete-button" type="button" (click)="onDeleteTags(i)">Remove</button>
-          </div> 
-
-      </div>
-
-    <button type="submit">Salva</button>
-</form>
-</div> -->
-
 <div class="container">
-  <form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <table class="example-full-width" cellspacing="0">
-      <tr>
-        <td>
-          <mat-form-field class="example-full-width">
-            <mat-label>Titolo</mat-label>
-            <input matInput formControlName="title" />
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="example-full-width">
-            <mat-label>Categoria</mat-label>
-            <input matInput formControlName="category" />
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="example-full-width">
-            <mat-label>Image Url</mat-label>
-            <input matInput formControlName="imageUrl" />
-          </mat-form-field>
-        </td>
-      </tr>
-    </table>
+<form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <p>
-      <mat-form-field class="example-full-width">
-        <mat-label>Contenuto</mat-label>
-        <textarea
-          matInput
-          placeholder="Ex. 100 Main St"
-          formControlName="content"
-        ></textarea>
-      </mat-form-field>
-    </p>
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Titolo</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Categoria</mat-label>
+      <input matInput formControlName="category" />
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Image Url</mat-label>
+      <input matInput formControlName="imageUrl" />
+    </mat-form-field></td>
+  </tr></table>
 
-    <table class="example-full-width" cellspacing="0">
-      <tr>
-        <td>
-          <mat-form-field class="example-full-width">
-            <mat-label>Data Pubblicazione</mat-label>
-            <input matInput formControlName="publicationDate" />
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="example-full-width">
-            <mat-label>Nome Autore</mat-label>
-            <input matInput formControlName="authorName" />
-          </mat-form-field>
-        </td>
-      </tr>
-    </table>
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Contenuto</mat-label>
+      <textarea matInput placeholder="Ex. 100 Main St" formControlName="content" ></textarea>
+    </mat-form-field>
+  </p>
 
-    <!-- <div class="tag" formArrayName="tags">
-
-    <label for="tags">
-      <button style="margin-left: 1rem;" class="add-button" type="button" (click)="onAddTags()">Add Tag</button>
-    </label>
-    
-      <div 
-          *ngFor="let t of tagsFormArray.controls; 
-                  let i = index">
-               <input type="text"
-              id="tags"
-              name="tags"
-              placeholder="tag nº{{ i + 1 }}"
-              [formControlName]="i" formControlName="0"/> 
-
-              <button class="delete-button" type="button" (click)="onDeleteTags(i)">Remove</button>
-      </div> 
-
-  </div> -->
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Data Pubblicazione</mat-label>
+      <input matInput formControlName="publicationDate" />
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Nome Autore</mat-label>
+      <input matInput formControlName="authorName" />
+    </mat-form-field></td>
+  </tr></table>
 
     <mat-form-field class="example-chip-list" appearance="fill">
       <mat-label>Tags</mat-label>

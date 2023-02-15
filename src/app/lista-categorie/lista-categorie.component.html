@@ -1,27 +1,23 @@
-<body>
-    <section>
-        <div class="contenitore-listacomp">
-            <div class="scatola-listacomp">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Console</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let c of categorie$ | async">
-                            <td>{{ c.name }}</td>
-                            <td>
-                                <button (click)="onClickDelete(c._id)">Elimina</button>
-                                <button [routerLink]="['/nuova-categoria', c._id]" class="random-btn">
-                                    Edit
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+<div class="container">
+
+    <section style="margin-left: .5rem;">
+        <div class="example-button-row">
+          <button [routerLink]="['/nuova-categoria']" mat-raised-button color="primary">Add Category</button>
         </div>
-        <button [routerLink]="['/nuova-categoria']" class="aggiungi">Nuova Categoria</button>
-    </section>
-</body>
+      </section>
+
+    <div *ngFor="let c of categorie$ | async">
+    
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>{{ c.name }}</mat-card-title>
+              <mat-card-subtitle>Categoria</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions align="end">
+              <button mat-button (click)="onClickDelete(c._id)">DELETE</button>
+              <button mat-button [routerLink]="['/nuova-categoria', c._id]">DETAIL</button>
+            </mat-card-actions>
+          </mat-card>
+    
+    </div>
+</div>

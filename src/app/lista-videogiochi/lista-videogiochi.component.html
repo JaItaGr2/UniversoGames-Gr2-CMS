@@ -1,3 +1,4 @@
+<!-- 
 <body>
     <section>
         <div class="contenitore-listavid"> 
@@ -12,7 +13,7 @@
                             <th>Software house</th>
                             <th>Publisher</th>
                             <th>Numero di giocatori</th>
-                            <!--<th>Linguaggio:</th>-->
+                            <th>Linguaggio:</th>
                             <th>Doppiaggio</th>
                             <th>Sottotitoli</th>
                             <th>Immagine Videogioco</th>
@@ -42,7 +43,7 @@
                 <button [routerLink]="['/nuovo-videogioco']" class="aggiungi">Nuovo videogioco</button>
             </div>
         </div>
-    <!--<div class="ricerca">
+    <div class="ricerca">
         <label>criterio di ricerca</label>
         <select id="categoria">
             <option selected>Cerca tutto</option>
@@ -55,6 +56,32 @@
         </select>
         <input type="text" class="keyword">
         <button>Cerca</button>
-    </div>-->
+    </div>
     </section>
 </body>
+
+-->
+
+<div class="container">
+
+    <section style="margin-left: .5rem;">
+        <div class="example-button-row">
+          <button [routerLink]="['/nuovo-videogioco']" mat-raised-button color="primary">Add Game</button>
+        </div>
+      </section>
+
+    <div *ngFor="let v of videogiochi$ | async">
+    
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>{{ v.title }}</mat-card-title>
+              <mat-card-subtitle>{{ v.category }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions align="end">
+              <button mat-button (click)="onClickDelete(v._id)">DELETE</button>
+              <button mat-button [routerLink]="['/nuovo-videogioco', v._id]">DETAIL</button>
+            </mat-card-actions>
+          </mat-card>
+    
+    </div>
+    </div>

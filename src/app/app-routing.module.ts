@@ -19,12 +19,12 @@ const routes: Routes =
   {
     path:'nuova-categoria',
     component: NuovaCategoriaComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
   },
   {
     path:'nuovo-videogioco',
     component: NuovoVideogiocoComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
   },
   {
     path:'nuova-categoria/:id',
@@ -37,7 +37,7 @@ const routes: Routes =
   {
     path: 'form-news',
     component: FormNewsComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
   },
   {
     path: 'form-news/:id',
@@ -46,12 +46,12 @@ const routes: Routes =
   {
     path: 'form-review',
     component: FormReviewComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
   },
   {
     path: 'form-review/:id',
     component: FormReviewComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
   },
   {
     path:'lista-videogiochi',

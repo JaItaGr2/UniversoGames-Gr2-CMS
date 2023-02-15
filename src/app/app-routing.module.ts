@@ -26,9 +26,16 @@ const routes: Routes =
     component: NuovoVideogiocoComponent,
     canActivate: [AuthGuard],
   },
-
   {
-    path: 'new-news',
+    path:'nuova-categoria/:id',
+    component: NuovaCategoriaComponent,
+  },
+  {
+    path:'nuovo-videogioco/:id',
+    component: NuovoVideogiocoComponent,
+  },
+  {
+    path: 'form-news',
     component: FormNewsComponent,
     canActivate: [AuthGuard],
   },
@@ -62,6 +69,7 @@ const routes: Routes =
     path:'lista-reviews',
     component: ListaReviewsComponent,
   },
+ 
 ];
 
 @NgModule({

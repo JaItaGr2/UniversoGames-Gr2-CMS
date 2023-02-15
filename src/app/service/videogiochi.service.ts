@@ -13,7 +13,7 @@ export class VideogiochiService{
     }
 
     getVideogioco(id: string){
-        return this.http.get<Videogioco>(this.apiUrl + '/' + id);
+        return this.http.get<Videogioco>(`${this.apiUrl}/${id}`);
     }
 
     addVideogioco(newVideogioco: Omit<Videogioco, 'id'>){
@@ -21,10 +21,10 @@ export class VideogiochiService{
     }
 
     deleteVideogioco(id: string){
-        return this.http.delete(this.apiUrl + '/' + id);
+        return this.http.delete(`${this.apiUrl}/${id}`);
     }
 
     updateVideogioco(videogioco: Videogioco){
-        return this.http.put(this.apiUrl, videogioco);
+        return this.http.put(`${this.apiUrl}/${videogioco._id}`, videogioco);
     }
 }

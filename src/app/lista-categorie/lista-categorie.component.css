@@ -1,0 +1,8 @@
+.contenitore-listacomp{
+    display: flex;
+    justify-content: center;
+}
+.aggiungi{
+    display: block;
+    margin: auto;
+}

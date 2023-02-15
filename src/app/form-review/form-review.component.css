@@ -1,39 +1,48 @@
-.form {
+.container{
+  margin-top: 5rem;
+}
+
+.form{
   display: flex;
   flex-direction: column;
-  width: 50%;
-  margin: 2rem auto;
-  gap: 1rem;
-  padding: 20px;
+  width: 30rem;
 }
 
-/* stars */
-.stars {
-  display: inline-block;
-  font-size: 60px;
-  font-family: Times;
-  line-height: 1;
+#cont{
+  height: 5rem;
 }
 
-.stars::before {
-  --percent: calc(var(--rating) / 10 * 100%);
-
-  content: "★★★★★";
-  letter-spacing: 3px;
-  background: linear-gradient(
-    90deg,
-    #fc0 var(--percent),
-    #fff var(--percent)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.tag{
+  padding: 0.5rem;
 }
 
-.form-stars-p {
-  background: #eee;
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+
+.example-chip-list {
+  width: 100%;
+}
+
+.flexare{
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
 }
-/* end stars */

@@ -16,10 +16,10 @@ import { ListaReviewsComponent } from './lista-reviews/lista-reviews.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatButtonModule} from '@angular/material/button';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule} from '@angular/material/input';
+import { MatChipsModule} from '@angular/material/chips';
 
 
 @NgModule({
@@ -50,9 +50,6 @@ import {MatChipsModule} from '@angular/material/chips';
         MatFormFieldModule,
         MatInputModule,
         MatChipsModule,
-    ]
     ],
-  providers: [],
-  bootstrap: [AppComponent]
 })
 export class AppModule { }

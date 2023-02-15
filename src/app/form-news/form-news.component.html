@@ -1,42 +1,3 @@
-<!-- <div class="container">
-
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-
-  <div class="form">
-
-    <input type="text" placeholder="Titolo" formControlName="title" />
-    <input type="text" placeholder="Categoria" formControlName="category" />
-    <input type="text" placeholder="Immagine" formControlName="imageUrl" />
-    <input id="cont" type="text" placeholder="Contenuto" formControlName="content" />
-    <input type="text" placeholder="Data_pubblicazione" formControlName="publicationDate" />
-    <input type="text" placeholder="Nome_autore" formControlName="authorName" />
-
-  </div>
-
-  <div class="tag" formArrayName="tags">
-
-        <label for="tags">
-          <button style="margin-left: 1rem;" class="add-button" type="button" (click)="onAddTags()">Add Tag</button>
-        </label>
-        
-          <div 
-              *ngFor="let t of tagsFormArray.controls; 
-                      let i = index">
-          <input type="text"
-                  id="tags"
-                  name="tags"
-                  placeholder="tag nº{{ i + 1 }}"
-                  [formControlName]="i" formControlName="0"/>
-
-                  <button class="delete-button" type="button" (click)="onDeleteTags(i)">Remove</button>
-          </div> 
-
-      </div>
-
-    <button type="submit">Salva</button>
-</form>
-</div> -->
-
 <div class="container">
 <form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit()">
 
@@ -73,10 +34,10 @@
     </mat-form-field></td>
   </tr></table>
 
-  <!-- <div class="tag" formArrayName="tags">
+    <div class="tag" formArrayName="tags">
 
     <label for="tags">
-      <button style="margin-left: 1rem;" class="add-button" type="button" (click)="onAddTags()">Add Tag</button>
+      <button style="margin-left: 1rem;" class="add-button" type="button" (click)="onAddTags()">Add Tag +</button>
     </label>
     
       <div 
@@ -88,30 +49,10 @@
               placeholder="tag nº{{ i + 1 }}"
               [formControlName]="i" formControlName="0"/> 
 
-              <button class="delete-button" type="button" (click)="onDeleteTags(i)">Remove</button>
+              <button class="delete-button" type="button" (click)="onDeleteTags(i)">Remove -</button>
       </div> 
 
-  </div> -->
-
-  <mat-form-field class="example-chip-list" appearance="fill">
-    <mat-label>Tags</mat-label>
-    <mat-chip-grid #chipGrid aria-label="Enter fruits">
-      <mat-chip-row *ngFor="let fruit of fruits"
-                    (removed)="remove(fruit)"
-                    [editable]="true"
-                    (edited)="edit(fruit, $event)"
-                    [aria-description]="'press enter to edit ' + fruit.name">
-        {{fruit.name}}
-        <button matChipRemove [attr.aria-label]="'remove ' + fruit.name">
-        </button>
-      </mat-chip-row>
-      <input placeholder="New fruit..."
-             [matChipInputFor]="chipGrid"
-             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-             [matChipInputAddOnBlur]="addOnBlur"
-             (matChipInputTokenEnd)="add($event); onAddTags()"/>
-    </mat-chip-grid>
-  </mat-form-field>
+  </div>
 
   <section style="margin-left: .5rem;">
     <div class="example-button-row">

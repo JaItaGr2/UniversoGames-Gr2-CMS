@@ -35,7 +35,7 @@ const routes: Routes =
     component: NuovoVideogiocoComponent,
   },
   {
-    path: 'new-news',
+    path: 'form-news',
     component: FormNewsComponent,
     canActivate: [AuthGuard],
   },

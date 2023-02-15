@@ -25,6 +25,6 @@ export class newsService{
     }
 
     editNews(editNews: news) {
-        return this.http.put(this.apiUrl, editNews);
+        return this.http.put(`${this.apiUrl}/${editNews._id}`, editNews);
     }
 }

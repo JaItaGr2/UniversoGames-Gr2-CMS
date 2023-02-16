@@ -23,6 +23,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon'; 
 import {MatSelectModule} from '@angular/material/select';
 import {MatDividerModule} from '@angular/material/divider';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
     declarations: [
@@ -37,6 +39,7 @@ import {MatDividerModule} from '@angular/material/divider';
         HeaderComponent,
         ListaReviewsComponent,
         LoginComponent,
+        SignUpComponent,
     ],
     imports: [
       BrowserModule,
@@ -53,6 +56,7 @@ import {MatDividerModule} from '@angular/material/divider';
       MatIconModule,
       MatSelectModule,
       MatDividerModule,
+      MatStepperModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

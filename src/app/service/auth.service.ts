@@ -5,6 +5,19 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  private users = [
+    {
+      nome: 'Luca',
+      email: 'pippo@example.com',
+      password: 'qwerty',
+    },
+    {
+      nome: 'Mara',
+      email: 'mara@example.com',
+      password: 'admin',
+    },
+  ]
+
   isLogged = true;
 
   isLoggedChanged = new Subject<boolean>();

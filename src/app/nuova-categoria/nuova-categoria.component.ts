@@ -11,7 +11,7 @@ import { map } from 'rxjs';
 })
 export class NuovaCategoriaComponent implements OnInit{
   form: FormGroup = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', [Validators.required]),
   });
 
   isEditMode = false;

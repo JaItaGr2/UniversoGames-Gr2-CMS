@@ -99,13 +99,64 @@
         <td>
           <mat-form-field class="example-full-width">
             <mat-label>N Giocatori</mat-label>
-            <input matInput formControlName="numberOfPlayers" />
+            <input type="number" matInput formControlName="numberOfPlayers" />
           </mat-form-field>
         </td>
       </tr>
     </table>
 
     <div formGroupName="languages">
+    <mat-form-field class="example-chip-list" appearance="fill">
+      <mat-label>Language</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Tags selection" formArrayName="voice">
+        <mat-chip-row
+          class="cipColor"
+          *ngFor="let tag of voiceFormArray.value; let i = index"
+          (removed)="remove(i)"
+        >
+          {{ tag }}
+          <button matChipRemove [attr.aria-label]="'remove ' + tag">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input
+        placeholder="Language..."
+        #tagInput
+        [formControl]="voiceCtrl"
+        [matChipInputFor]="chipGrid"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-form-field>
+  
+
+  <mat-form-field class="example-chip-list" appearance="fill">
+      <mat-label>Subtitles</mat-label>
+      <mat-chip-grid #chipGrid2 aria-label="Tags selection" formArrayName="text">
+        <mat-chip-row
+          class="cipColor"
+          *ngFor="let tag of textFormArray.value; let i = index"
+          (removed)="removet(i)"
+        >
+          {{ tag }}
+          <button matChipRemove [attr.aria-label]="'remove ' + tag">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input
+        placeholder="Subtitles..."
+        #textInput
+        [formControl]="textCtrl"
+        [matChipInputFor]="chipGrid2"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addt($event)"
+      />
+    </mat-form-field>
+  </div>
+
+    <!-- <div formGroupName="languages">
       <div formArrayName="voice">
         <h2>
           <section style="margin-left: 0.5rem">
@@ -117,7 +168,7 @@
             </div>
           </section>
         </h2>
-        <div
+         <div
           class="flexare"
           *ngFor="let _ of voiceFormArray.controls; let i = index"
         >
@@ -145,9 +196,10 @@
                 </button>
               </div>
             </div>
-          </section>
+          </section>  
         </div>
-      </div>
+      </div> 
+
       <div formArrayName="text">
         <section style="margin-left: 0.5rem">
           <div class="example-label"></div>
@@ -187,7 +239,7 @@
           </section>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <section style="margin-left: 0.5rem; margin-top: 2rem">
       <div class="example-button-row">
@@ -198,3 +250,5 @@
     </section>
   </form>
 </div>
+
+

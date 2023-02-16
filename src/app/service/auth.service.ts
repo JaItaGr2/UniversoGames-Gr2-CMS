@@ -1,34 +1,78 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Subject, map } from 'rxjs';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private users = [
+  private users: User[] = [
     {
-      nome: 'Luca',
+      name: 'Admin',
+      email: 'admin@admin.com',
+      password: 'admin',
+      role: 'admin',
+    },
+    {
+      name: 'Luca',
       email: 'pippo@example.com',
       password: 'qwerty',
+      role: 'user',
     },
     {
-      nome: 'Mara',
+      name: 'Mara',
       email: 'mara@example.com',
       password: 'admin',
+      role: 'admin',
     },
-  ]
+  ];
+  
+  constructor(private router: Router) {}
 
-  isLogged = true;
+  private loggedUserSubject = new BehaviorSubject<User | null>(null);
+  readonly loggedUser$ = this.loggedUserSubject.asObservable();
 
-  isLoggedChanged = new Subject<boolean>();
+  readonly isLogged$ = this.loggedUser$.pipe(
+    map((loggedUser) => {
+      if (loggedUser === null) {
+        return false;
+      } else {
+        return true;
+      }
+    }),
+  );
 
-  login(username: string, password: string) {
-    if (username === 'admin' && password === 'admin') {
-      this.isLogged = true;
+  readonly isAdmin$ = this.loggedUser$.pipe(
+    map((logged) => logged?.role === 'admin')
+  );
+
+
+  login(email: string, password: string) {
+    const existingUser = this.users.find(
+      (u) => u.email === email && u.password === password
+    );
+
+    if (existingUser) {
+      this.loggedUserSubject.next(existingUser!);
+      this.router.navigateByUrl('/');
     }
 
-    this.isLoggedChanged.next(this.isLogged);
+    return !!existingUser;
+  }
 
-    return this.isLogged;
+  logout() {
+    this.loggedUserSubject.next(null);
+
+    this.router.navigateByUrl('/login');
+  }
+
+  signUpUser(name: string, email: string, password: string) {
+    this.users.push({
+      name,
+      email,
+      password,
+      role: 'admin'
+    });
   }
 }

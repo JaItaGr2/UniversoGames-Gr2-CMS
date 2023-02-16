@@ -58,8 +58,6 @@ export class NuovoVideogiocoComponent implements OnInit {
           .getVideogioco(this.idVideogiocoDaModificare)
           .pipe(
             map((val: Videogioco) => {
-              console.log('ok');
-              console.log(val);
               return (this.form = new FormGroup({
                 title: new FormControl(val.title),
                 category: new FormControl(val.category),
@@ -80,7 +78,7 @@ export class NuovoVideogiocoComponent implements OnInit {
               }));
             })
           )
-          .subscribe(console.log);
+          .subscribe();
       }
     });
   }
@@ -161,12 +159,10 @@ export class NuovoVideogiocoComponent implements OnInit {
 
     if (this.isEditMode) {
       formResponse._id = this.idVideogiocoDaModificare;
-      console.log(formResponse);
       this.videogiochiService.updateVideogioco(formResponse).subscribe(() => {
         this.videogiochiService.getVideogioco(this.idVideogiocoDaModificare);
       });
     } else {
-      console.log(formResponse);
       this.videogiochiService.addVideogioco(formResponse).subscribe(() => {
         this.videogiochiService.getVideogiochi();
       });

@@ -26,13 +26,11 @@ export class NuovaCategoriaComponent implements OnInit{
         this.isEditMode = true;
       this.categorieService.getCategoria(this.idCategoriaDaModificare).pipe(
       map((val: Categoria) =>{
-        console.log('ok');
-        console.log(val);
         return this.form = new FormGroup({
           name: new FormControl(val.name),
         }); 
       })
-      ).subscribe(console.log);
+      ).subscribe();
       }
     });
   }
@@ -50,12 +48,10 @@ export class NuovaCategoriaComponent implements OnInit{
 
     if(this.isEditMode){
       formResponse._id = this.idCategoriaDaModificare;
-      console.log(formResponse);
      this.categorieService.updateCategoria(formResponse).subscribe(() =>{
       this.categorieService.getCategoria(this.idCategoriaDaModificare);
      });
   } else{
-    console.log(formResponse);
     this.categorieService.addCategoria(formResponse).subscribe(() =>{
       this.categorieService.getCategorie();
     });

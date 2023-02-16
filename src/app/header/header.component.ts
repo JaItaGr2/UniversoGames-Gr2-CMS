@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RoutesRecognized } from '@angular/router';
-import { filter } from 'rxjs';
+import { Observable, filter, map } from 'rxjs';
+import { AuthService } from '../service/auth.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-header',
@@ -9,17 +11,23 @@ import { filter } from 'rxjs';
 })
 export class HeaderComponent {
   selectedPath = 'home';
+  loggedUser$!: Observable<User | null>;
+  isLogged$!: Observable<boolean>;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
+    this.loggedUser$ = this.authService.loggedUser$;
+    this.isLogged$ = this.authService.isLogged$;
 
     this.router.events
       .pipe(filter((e) => e instanceof RoutesRecognized))
       .subscribe((val: any) => {
         this.selectedPath = val.urlAfterRedirects.split('/')[1];
       });
-      console.log(this.selectedPath);
+  }
 
+  onLogout() {
+    this.authService.logout();
   }
 }

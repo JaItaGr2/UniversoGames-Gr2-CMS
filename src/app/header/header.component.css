@@ -98,6 +98,14 @@ input[type="checkbox"]:checked ~ .label #burg2 {
 
 .area-riservata {
   color: white;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.btn-logout {
+  color: white !important;
+  background-color: #757582;
+  height: fit-content;
 }
 
 /*** Page Path ***/

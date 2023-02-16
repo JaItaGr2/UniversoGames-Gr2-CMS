@@ -100,6 +100,21 @@ input[type="checkbox"]:checked ~ .label #burg2 {
   color: white;
 }
 
+/*** Page Path ***/
+.underline {
+  font-weight: 900;
+}
+
+.underline::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: #fff;
+  transform-origin: left;
+  transition: transform ease-in-out 0.5s;
+}
+
 @media screen and (max-width: 1280px) {
   .container {
     width: 100%;

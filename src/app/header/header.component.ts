@@ -8,7 +8,7 @@ import { filter } from 'rxjs';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  selectedPath = '';
+  selectedPath = 'home';
 
   constructor(private router: Router) {}
 
@@ -19,6 +19,7 @@ export class HeaderComponent {
       .subscribe((val: any) => {
         this.selectedPath = val.urlAfterRedirects.split('/')[1];
       });
+      console.log(this.selectedPath);
 
   }
 }

@@ -19,3 +19,7 @@
   .example-button-row .mat-mdc-button-base {
     margin: 8px 8px 8px 0;
   }
+
+  .mdc-card:hover {
+    background-color: rgba(211, 211, 211, 0.349);
+  }

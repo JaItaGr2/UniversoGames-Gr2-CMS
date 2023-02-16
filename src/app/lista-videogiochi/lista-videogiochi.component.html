@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- 
 <body>
     <section>
@@ -63,26 +64,92 @@
 
 -->
 
+=======
+>>>>>>> ca1597e119895ec43f903b16f28a8c1140277b86
 <div class="container">
-
-    <section style="margin-left: .5rem;">
-        <div class="example-button-row">
-          <button [routerLink]="['/nuovo-videogioco']" mat-raised-button color="primary">Add Game</button>
-        </div>
-      </section>
-
-    <div *ngFor="let v of videogiochi$ | async">
-    
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>{{ v.title }}</mat-card-title>
-              <mat-card-subtitle>{{ v.category }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-actions align="end">
-              <button mat-button (click)="onClickDelete(v._id)">DELETE</button>
-              <button mat-button [routerLink]="['/nuovo-videogioco', v._id]">DETAIL</button>
-            </mat-card-actions>
-          </mat-card>
-    
+  <section style="padding: 0 0.5rem" class="top-section">
+    <div class="example-button-row">
+      <button
+        [routerLink]="['/nuovo-videogioco']"
+        mat-raised-button 
+        color="primary"
+      >
+        <mat-icon>add</mat-icon>
+        Add Game
+      </button>
     </div>
+
+    <div>
+      <!-- Ordinamento -->
+      <mat-form-field appearance="fill">
+        <mat-label>Ordina per</mat-label>
+        <mat-select [formControl]="ordinamentoControl" (valueChange)="ordinaPer()">
+          <mat-optgroup [label]="'Data'">
+            <mat-option [value]="'data-decrescente'" selected>
+              Data Decrescente
+            </mat-option>
+            <mat-option [value]="'data-crescente'">
+              Data Crescente
+            </mat-option>
+          </mat-optgroup>
+          <mat-optgroup [label]="'Titolo'">
+            <mat-option [value]="'titolo-decrescente'" selected>
+              Titolo Decrescente
+            </mat-option>
+            <mat-option [value]="'titolo-crescente'">
+              Titolo Crescente
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Filtraggio Categorie -->
+      <mat-form-field appearance="fill">
+        <mat-label>Categorie</mat-label>
+        <mat-select [formControl]="categorie" multiple>
+          <mat-select-trigger>
+            {{categorie.value?.[0] || ''}}
+            <span *ngIf="(categorie.value?.length || 0) > 1" class="example-additional-selection">
+              (+{{(categorie.value?.length || 0) - 1}} {{categorie.value?.length === 2 ? 'other' : 'others'}})
+            </span>
+          </mat-select-trigger>
+          <mat-option *ngFor="let categoria of (categorie$ | async) as listaCategorie" [value]="categoria.name">{{ categoria.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Ricerca globale -->
+      <mat-form-field class="example-form-field">
+        <mat-label>Cerca in tutti i campi</mat-label>
+        <input matInput placeholder="Titolo, console, ..." type="text" [(ngModel)]="keyRicerca">
+        <button *ngIf="keyRicerca" matSuffix mat-icon-button aria-label="Clear" (click)="keyRicerca=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="ricerca(keyRicerca)">
+        <mat-icon>search</mat-icon>
+        Cerca
+      </button>
     </div>
+  </section>
+
+  <div *ngFor="let v of videogiochi$ | async">
+    <mat-card>
+      <mat-divider></mat-divider>
+      <mat-card-header>
+        <mat-card-title>{{ v.title }}</mat-card-title>
+        <mat-card-subtitle>{{ v.category }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <button (click)="openDialog('300ms', '300ms')" mat-button color="warn"> <!--(click)="onClickDelete(v._id)"-->
+          <mat-icon>delete</mat-icon>
+          DELETE
+        </button>
+        <button mat-button [routerLink]="['/nuovo-videogioco', v._id]">
+          <mat-icon>edit</mat-icon>
+          DETAIL
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

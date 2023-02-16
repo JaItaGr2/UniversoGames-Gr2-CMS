@@ -1,3 +1,8 @@
+.aggiungi{
+  display: block;
+  margin: auto;
+}
+
 .container{
     margin-top: 4.6rem;
 }
@@ -32,4 +37,23 @@ section {
   display: flex;
   justify-content: center;
   width: 120px;
+}
+
+.top-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+
+.mat-divider {
+  width: 97%;
+  margin: auto;
+}
+
+.mdc-card:hover {
+  background-color: rgba(211, 211, 211, 0.349);
 }

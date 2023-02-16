@@ -21,6 +21,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon'; 
+import {MatSelectModule} from '@angular/material/select';
+import {MatDividerModule} from '@angular/material/divider';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +41,8 @@ import {MatIconModule} from '@angular/material/icon';
         HeaderComponent,
         ListaReviewsComponent,
         LoginComponent,
+        SignUpComponent,
+        DialogDeleteComponent,
     ],
     imports: [
       BrowserModule,
@@ -49,6 +57,10 @@ import {MatIconModule} from '@angular/material/icon';
       MatInputModule,
       MatChipsModule,
       MatIconModule,
+      MatSelectModule,
+      MatDividerModule,
+      MatStepperModule,
+      MatDialogModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

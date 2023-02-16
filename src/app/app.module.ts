@@ -25,6 +25,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDividerModule} from '@angular/material/divider';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 
 @NgModule({
     declarations: [
@@ -40,6 +42,7 @@ import {MatStepperModule} from '@angular/material/stepper';
         ListaReviewsComponent,
         LoginComponent,
         SignUpComponent,
+        DialogDeleteComponent,
     ],
     imports: [
       BrowserModule,
@@ -57,6 +60,7 @@ import {MatStepperModule} from '@angular/material/stepper';
       MatSelectModule,
       MatDividerModule,
       MatStepperModule,
+      MatDialogModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

@@ -6,6 +6,8 @@ import { map } from 'rxjs';
 import { CategorieService } from '../service/categorie.service';
 import { Categoria } from '../model/categoria';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
 
 @Component({
   selector: 'app-lista-videogiochi',
@@ -21,12 +23,21 @@ export class ListaVideogiochiComponent implements OnInit {
 
   constructor(
     private videogiochiService: VideogiochiService,
-    private categorieService: CategorieService
+    private categorieService: CategorieService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.videogiochi$ = this.videogiochiService.getVideogiochi();
     this.categorie$ = this.categorieService.getCategorie();
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(DialogDeleteComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 
   onClickDelete(id: string) {

@@ -101,6 +101,9 @@ export class NuovoVideogiocoComponent implements OnInit {
   }
 
   onSubmit() {
+
+    console.log(this.form.getRawValue);
+
     if (this.form.invalid) {
       alert('Attenzione, compilare i campi obbligatori');
       return;
@@ -108,6 +111,7 @@ export class NuovoVideogiocoComponent implements OnInit {
 
     let formResponse = this.form.getRawValue();
     formResponse.__v = 0;
+    formResponse._id = '';
 
     if (this.isEditMode) {
       formResponse._id = this.idVideogiocoDaModificare;
@@ -126,5 +130,5 @@ export class NuovoVideogiocoComponent implements OnInit {
     this.isEditMode = false;
     this.idVideogiocoDaModificare = '';
     this.router.navigateByUrl('/');
-  }
+    }
 }

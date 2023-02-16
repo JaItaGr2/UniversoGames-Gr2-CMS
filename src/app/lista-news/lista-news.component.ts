@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { news } from '../model/news';
 import { newsService } from '../service/news.service';
 
+
 @Component({
   selector: 'app-lista-news',
   templateUrl: './lista-news.component.html',
@@ -24,4 +25,6 @@ export class ListaNewsComponent implements OnInit{
   }
 
   onClickEdit(id: string) {}
+
+  
 }

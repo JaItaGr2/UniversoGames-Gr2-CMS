@@ -3,3 +3,12 @@
     margin: auto;
     margin-top: 250px;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form > div {
+    display: contents;
+}

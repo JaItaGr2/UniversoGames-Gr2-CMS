@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -22,13 +23,26 @@ export class AuthService {
 
   isLoggedChanged = new Subject<boolean>();
 
-  login(username: string, password: string) {
-    if (username === 'admin' && password === 'admin') {
-      this.isLogged = true;
-    }
+  constructor(private router: Router) {}
 
+  login(email: string, password: string) {
+    this.users.forEach(user => {
+      if (email === user.email && password === user.password) {
+        this.isLogged = true;
+      }
+    });
     this.isLoggedChanged.next(this.isLogged);
 
+    this.router.navigateByUrl('/');
     return this.isLogged;
+  }
+
+  signInUser(nome: string, email: string, password: string) {
+    this.users.push({
+      nome,
+      email,
+      password,
+    })
+    this.login(email, password);
   }
 }

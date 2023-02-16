@@ -1,6 +1,6 @@
-<div>
-	<div><p>Sei già registrato? </p><a routerLink="login">Login</a></div>
-  <form action="">
+<div class="container">
+	<div><p>Sei già registrato? </p><a routerLink="/login">Login</a></div>
+  <form (submit)="register()">
 
 		<!-- Nome step -->
     <mat-stepper linear #stepper>
@@ -31,7 +31,9 @@
             <mat-label>Inserisci l'email</mat-label>
             <input
               matInput
+              type="email"
 							[(ngModel)]="email"
+              [(ngModel)]="emailSign"
               placeholder="pat@example.com"
               [formControl]="email"
               formControlName="secondCtrl"
@@ -44,7 +46,7 @@
             <mat-label>Ripeti email</mat-label>
             <input
               matInput
-							[(ngModel)]="emailRepeat"
+              type="email"
               formControlName="secondCtrlRepeat"
               required
             />
@@ -73,10 +75,13 @@
 
 					<mat-form-field appearance="fill">
 						<mat-label>La tua Password</mat-label>
-						<input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password" formControlName="thirdCtrl" required  />
+							(click)="hide = !hide"
+							(click)="hide = !hide"
+						<input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="pwSign" [(ngModel)]="password" formControlName="thirdCtrl" required  />
 						<button
 							mat-icon-button
 							matSuffix
+              type="button"
 							(click)="hide = !hide"
 							[attr.aria-label]="'Hide password'"
 							[attr.aria-pressed]="hide"
@@ -101,6 +106,7 @@
             <button
               mat-button
               matStepperNext
+              type="button"
               [disabled]="validateRepeat('third')"
               (click)="isEditable = false"
             >

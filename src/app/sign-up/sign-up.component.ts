@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,8 +8,8 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
-  email = new FormControl('', [Validators.required, Validators.email]);
-  emailRepeat = new FormControl('', [Validators.required, Validators.email]);
+  email = new FormControl('', [Validators.required, ]); //Validators.email
+  //emailRepeat = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.minLength(8)]);
   passwordRepeat = new FormControl('', [Validators.required, Validators.email]);
   hide = true;
@@ -21,11 +22,11 @@ export class SignUpComponent {
     return this.email.hasError('email') ? 'Email non valida' : '';
   }
   getErrorMsgEmailRepeat() {
-    if (this.emailRepeat.hasError('required')) {
+    /*if (this.emailRepeat.hasError('required')) {
       return 'Devi compilare questo campo';
     }
 
-    return this.emailRepeat.hasError('email') ? 'Le due email non corrispondono' : '';
+    return this.emailRepeat.hasError('email') ? 'Le due email non corrispondono' : '';*/
   }
 
   getErrorMsgPassword() {
@@ -60,11 +61,16 @@ export class SignUpComponent {
   });
   isEditable = true;
   nome = '';
+  emailSign = '';
+  pwSign = '';
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private authService: AuthService,
+  ) {}
 
   validateRepeat(campo: string) {
-    if (campo === 'second') {
+    /*if (campo === 'second') {
       if (this.secondFormGroup.getRawValue().secondCtrl === this.secondFormGroup.getRawValue().secondCtrlRepeat) {
         return true;
       }
@@ -74,7 +80,12 @@ export class SignUpComponent {
         return true;
       }
     }
+    return false;*/
     return false;
+  }
+
+  register() {
+    this.authService.signInUser(this.nome, this.emailSign, this.pwSign);
   }
 
 }

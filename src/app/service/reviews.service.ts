@@ -14,7 +14,8 @@ export class ReviewsService {
   constructor(private http: HttpClient) {}
 
   getReviews() {
-    return this.http.get<Review[]>(this.apiUrl);
+    this.reviews$ = this.http.get<Review[]>(this.apiUrl);
+    return this.reviews$;
   }
 
   getReview(id: string) {

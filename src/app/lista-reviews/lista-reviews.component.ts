@@ -36,16 +36,16 @@ export class ListaReviewsComponent implements OnInit {
     console.log('Done Component');
   }
 
-  //ricerca(keyword: string) {
-  //  this.listaReview$ = this.reviewsService.ricercaKey(keyword);
-  //  if (this.titolo.value) {
-  //    this.listaReview$ = this.reviewsService.filtraTitolo(
-  //      this.titolo.value,
-  //     this.listaReview$
-  //    );
-  //  }
-  //  this.ordinaPer();
-  //}
+  ricerca(keyword: string) {
+    this.listaReview$ = this.reviewsService.ricercaKey(keyword);
+    if (this.titolo.value) {
+      this.listaReview$ = this.reviewsService.filtraTitolo(
+        this.titolo.value,
+       this.listaReview$
+      );
+    }
+   this.ordinaPer();
+  }
 
   ordinaPer() {
     const ord = this.ordinamentoControl.value?.split('-');
@@ -53,7 +53,7 @@ export class ListaReviewsComponent implements OnInit {
       this.listaReview$ = this.listaReview$.pipe(
         map((data) => {
           let sortedData = data.sort((p1, p2) => {
-            if (ord[0] == 'data') {
+            if (ord[0] == 'voto') {
               return p1.score > p2.score
                 ? 1
                 : p1.score < p2.score

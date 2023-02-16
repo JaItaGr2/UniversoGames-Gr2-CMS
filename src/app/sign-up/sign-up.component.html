@@ -1,18 +1,18 @@
-<div>
-	<div><p>Sei già registrato? </p><a routerLink="login">Login</a></div>
-  <form action="">
-
-		<!-- Nome step -->
+<div class="container">
+  <div class="btn-loggati" *ngIf="!finalStep">
+    <a routerLink="/login">Sei già registrato? Login</a>
+  </div>
+  <form >
+    <!-- Nome step -->
     <mat-stepper linear #stepper>
       <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>Il tuo nome</ng-template>
-          <mat-form-field appearance="fill">
+          <mat-form-field class="register-input" appearance="fill">
             <mat-label>Nome</mat-label>
             <input
               matInput
-              [(ngModel)]="nome"
-              formControlName="firstCtrl"
+              formControlName="nomeCtrl"
               placeholder="Cognome, Nome"
               required
             />
@@ -23,86 +23,111 @@
         </form>
       </mat-step>
 
-			<!-- Email step -->
+      <!-- Email step -->
       <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
         <form [formGroup]="secondFormGroup">
           <ng-template matStepLabel>Registra email</ng-template>
-          <mat-form-field appearance="fill">
+          <mat-form-field class="register-input" appearance="fill">
             <mat-label>Inserisci l'email</mat-label>
             <input
               matInput
-							[(ngModel)]="email"
+              type="email"
               placeholder="pat@example.com"
-              [formControl]="email"
-              formControlName="secondCtrl"
+              formControlName="emailCtrl"
               required
             />
-            <mat-error *ngIf="email.invalid">{{ getErrorMsgEmail() }}</mat-error>
+            <mat-error
+              *ngIf="
+                secondFormGroup.get('emailCtrl')!.invalid ||
+                secondFormGroup.get('emailCtrl')!.touched ||
+                secondFormGroup.get('emailCtrl')!.dirty
+              "
+              >{{ getErrorMsgEmail() }}</mat-error
+            >
           </mat-form-field>
 
-          <mat-form-field appearance="fill">
+          <mat-form-field class="register-input" appearance="fill">
             <mat-label>Ripeti email</mat-label>
             <input
               matInput
-							[(ngModel)]="emailRepeat"
-              formControlName="secondCtrlRepeat"
+              type="email"
+              formControlName="emailCtrlRepeat"
               required
-            />
-            <mat-error *ngIf="validateRepeat('second')">{{
-              getErrorMsgEmailRepeat()
-            }}</mat-error>
+            /><!--secondFormGroup.invalid-->
+            <mat-error
+              *ngIf="
+                secondFormGroup.invalid ||
+                secondFormGroup.touched ||
+                secondFormGroup.dirty ||
+                secondFormGroup.get('emailCtrlRepeat')!.invalid ||
+                secondFormGroup.get('emailCtrlRepeat')!.touched ||
+                secondFormGroup.get('emailCtrlRepeat')!.dirty
+              "
+              >{{ getErrorMsgEmailRepeat() }}</mat-error
+            >
           </mat-form-field>
 
           <div>
             <button mat-button matStepperPrevious>Indietro</button>
-            <button
-              mat-button
-              matStepperNext
-              [disabled]="validateRepeat('second')"
-            >
-              Avanti
-            </button>
+            <button mat-button matStepperNext>Avanti</button>
           </div>
         </form>
       </mat-step>
 
-			<!-- Password step -->
+      <!-- Password step -->
       <mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
         <form [formGroup]="thirdFormGroup">
           <ng-template matStepLabel>Crea password</ng-template>
 
-					<mat-form-field appearance="fill">
-						<mat-label>La tua Password</mat-label>
-						<input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password" formControlName="thirdCtrl" required  />
-						<button
-							mat-icon-button
-							matSuffix
-							(click)="hide = !hide"
-							[attr.aria-label]="'Hide password'"
-							[attr.aria-pressed]="hide"
-						>
-							<mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-						</button>
-						<mat-error *ngIf="validateRepeat('third')">{{
-              getErrorMsgPassword()
-            }}</mat-error>
-					</mat-form-field>
+          <mat-form-field class="register-input" appearance="fill">
+            <mat-label>La tua Password</mat-label>
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              formControlName="passwordCtrl"
+              required
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+            <mat-error
+              *ngIf="
+                thirdFormGroup.get('passwordCtrl')!.invalid ||
+                thirdFormGroup.get('passwordCtrl')!.touched ||
+                thirdFormGroup.get('passwordCtrl')!.dirty
+              "
+              >{{ getErrorMsgPassword() }}</mat-error
+            >
+          </mat-form-field>
 
-					<mat-form-field appearance="fill">
-						<mat-label>Ripeti Password</mat-label>
-						<input matInput type="password" [(ngModel)]="passwordRepeat" formControlName="thirdCtrlRepeat" required  />
-						<mat-error *ngIf="validateRepeat('second')">{{
+          <mat-form-field class="register-input" appearance="fill">
+            <mat-label>Ripeti Password</mat-label>
+            <input
+              matInput
+              type="password"
+              formControlName="passwordCtrlRepeat"
+              required
+            />
+            <mat-error *ngIf="thirdFormGroup.invalid">{{
               getErrorMsgPasswordRepeat()
             }}</mat-error>
-					</mat-form-field>
-          
+          </mat-form-field>
+
           <div>
             <button mat-button matStepperPrevious>Indietro</button>
             <button
               mat-button
               matStepperNext
-              [disabled]="validateRepeat('third')"
-              (click)="isEditable = false"
+              type="button"
+              (click)="isEditable = false; finalStep = true"
+              (click)="registrati()"
             >
               Registrati
             </button>
@@ -110,15 +135,21 @@
         </form>
       </mat-step>
 
-			<!-- Fine step -->
+      <!-- Fine step -->
       <mat-step>
-        <ng-template matStepLabel>Fatto</ng-template>
-        <p>Registrazione completata!</p>
-        <h2>Benvenuto/a {{ nome }}</h2>
-        <div>
-          <button mat-button (click)="stepper.reset()" routerLink="/">
-            Vai alla home-page
-          </button>
+        <div class="final-step-container">
+          <ng-template matStepLabel>Fatto</ng-template>
+          <p>Registrazione completata!</p>
+          <h2>Benvenuto {{ firstFormGroup.get('nomeCtrl')!.getRawValue() }}</h2>
+          <div>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="primoLogin()"
+            ><!--(click)="stepper.reset()"-->
+              Vai alla home-page
+            </button>
+          </div>
         </div>
       </mat-step>
     </mat-stepper>

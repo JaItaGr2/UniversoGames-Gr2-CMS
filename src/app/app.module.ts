@@ -27,6 +27,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [
@@ -61,6 +62,7 @@ import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
       MatDividerModule,
       MatStepperModule,
       MatDialogModule,
+      MatSnackBarModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

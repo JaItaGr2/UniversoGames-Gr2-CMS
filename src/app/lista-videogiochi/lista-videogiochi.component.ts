@@ -20,6 +20,7 @@ export class ListaVideogiochiComponent implements OnInit {
   categorie$!: Observable<Categoria[]>;
   categorie = new FormControl('');
   ordinamentoControl = new FormControl('');
+  idDaEliminare = '';
 
   constructor(
     private videogiochiService: VideogiochiService,
@@ -37,19 +38,31 @@ export class ListaVideogiochiComponent implements OnInit {
       width: '250px',
       enterAnimationDuration,
       exitAnimationDuration,
-    });
+    }).afterClosed().subscribe(result => {
+      console.log(result);
+      if (result) {
+        this.onClickDelete();
+      }
+      this.idDaEliminare = '';
+    }); 
   }
 
-  onClickDelete(id: string) {
-    console.log('Elimina elemento');
-    this.videogiochiService.deleteVideogioco(id).subscribe(() => {
-      this.videogiochi$ = this.videogiochiService.getVideogiochi();
-    });
-    console.log('Done Component');
+  onClickDelete() {
+    if (this.idDaEliminare) {
+      this.videogiochiService.deleteVideogioco(this.idDaEliminare).subscribe(() => {
+        this.videogiochi$ = this.videogiochiService.getVideogiochi();
+      });
+      this.aggiornaLista();
+    }
   }
 
-  ricerca(keyword: string) {
-    this.videogiochi$ = this.videogiochiService.ricercaKey(keyword);
+  aggiornaLista() {
+    this.videogiochi$ = this.videogiochiService.getVideogiochi();
+    this.ricerca();
+  }
+
+  ricerca() {
+    this.videogiochi$ = this.videogiochiService.ricercaKey(this.keyRicerca);
     if (this.categorie.value) {
       this.videogiochi$ = this.videogiochiService.filtraCategorie(
         this.categorie.value,

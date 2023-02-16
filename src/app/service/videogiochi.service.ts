@@ -13,7 +13,7 @@ export class VideogiochiService {
   constructor(private http: HttpClient) {}
 
   getVideogiochi() {
-    this.videogiochi$ = this.restGetVideogiochi();
+    this.videogiochi$ = this.http.get<Videogioco[]>(this.apiUrl);
     return this.videogiochi$;
   }
 
@@ -87,26 +87,5 @@ export class VideogiochiService {
       return vids$;
     }
     return videogiochiTrovati;
-  }
-
-  // Chiamate REST
-  restGetVideogiochi() {
-    return this.http.get<Videogioco[]>(this.apiUrl);
-  }
-
-  restGetVideogioco(id: string) {
-    return this.http.get<Videogioco>(`${this.apiUrl}/${id}`);
-  }
-
-  restAddVideogioco(newVideogioco: Omit<Videogioco, 'id'>) {
-    return this.http.post(this.apiUrl, newVideogioco);
-  }
-
-  restDeleteVideogioco(id: string) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
-  }
-
-  restUpdateVideogioco(videogioco: Videogioco) {
-    return this.http.put(`${this.apiUrl}/${videogioco._id}`, videogioco);
   }
 }

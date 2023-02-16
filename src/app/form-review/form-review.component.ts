@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReviewsService } from '../service/reviews.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Review } from '../model/review';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { Videogioco } from '../model/videogioco';
+import { VideogiochiService } from '../service/videogiochi.service';
 
 @Component({
   selector: 'app-form-review',
@@ -12,17 +14,19 @@ import { map } from 'rxjs';
 })
 export class FormReviewComponent implements OnInit {
   form: FormGroup = new FormGroup({
-    title: new FormControl(''),
-    publicationDate: new FormControl(''),
-    content: new FormControl(''),
-    score: new FormControl(undefined),
-    reviewerName: new FormControl(''),
+    title: new FormControl('', [Validators.required]),
+    publicationDate: new FormControl('', [Validators.required]),
+    content: new FormControl('', [Validators.required]),
+    score: new FormControl(undefined, [Validators.required]),
+    reviewerName: new FormControl('', [Validators.required]),
     imageUrls: new FormArray([new FormControl('')]),
     reviewedGame: new FormGroup({
       id: new FormControl(''),
-      name: new FormControl(''),
     }),
   });
+
+  listaVideogiochi$!: Observable<Videogioco[]>;
+  videogiochiValue: string = '';
 
   isEditMode = false;
   idReviewDaModificare = '';
@@ -31,19 +35,20 @@ export class FormReviewComponent implements OnInit {
 
   constructor(
     private reviewsService: ReviewsService,
+    private videogiochiService: VideogiochiService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.listaVideogiochi$ = this.videogiochiService.getVideogiochi();
+
     this.route.params.subscribe((params) => {
       this.idReviewDaModificare = params['id'];
       if (this.idReviewDaModificare) {
         this.isEditMode = true;
         this.reviewsService.getReview(this.idReviewDaModificare).pipe(
           map((val: Review) => {
-            console.log('ok');
-            console.log(val);
             return this.form = new FormGroup({
               title: new FormControl(val.title),
               publicationDate: new FormControl(val.publicationDate),
@@ -54,12 +59,11 @@ export class FormReviewComponent implements OnInit {
                 val.imageUrls.map((step) => new FormControl(step))
               ),
               reviewedGame: new FormGroup({
-                id: new FormControl(val.reviewedGame.id),
-                name: new FormControl(val.reviewedGame.name),
+                id: new FormControl(val.reviewedGame.id + '///' + val.reviewedGame.name),
               }),
             });
           })
-        ).subscribe(console.log);
+        ).subscribe();
       }
     });
   }
@@ -84,15 +88,15 @@ export class FormReviewComponent implements OnInit {
 
     let formResponse = this.form.getRawValue();
     formResponse.__v = 0;
+    formResponse.reviewedGame.name = formResponse.reviewedGame.id.split('///')[1];
+    formResponse.reviewedGame.id = formResponse.reviewedGame.id.split('///')[0];
 
     if (this.isEditMode) {
       formResponse._id = this.idReviewDaModificare;
-      console.log(formResponse);
       this.reviewsService.updateReview(formResponse).subscribe(() => {
         this.reviewsService.getReview(this.idReviewDaModificare);
       });
     } else {
-      console.log(formResponse);
       this.reviewsService.addReview(formResponse).subscribe(() => {
         this.reviewsService.getReviews();
       });
@@ -101,6 +105,6 @@ export class FormReviewComponent implements OnInit {
     this.form.reset();
     this.isEditMode = false;
     this.idReviewDaModificare = '';
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/lista-reviews');
   }
 }

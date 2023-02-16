@@ -4,7 +4,7 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Chiudi</button>
-  <button mat-raised-button color="warn" mat-dialog-close cdkFocusInitial>
+  <button mat-raised-button color="warn" mat-dialog-close cdkFocusInitial (click)="onClickDelete()">
     <mat-icon>delete</mat-icon>
     Elimina
 </button>

@@ -29,11 +29,9 @@ export class ListaReviewsComponent implements OnInit {
   }
 
   onDelete(id: string) {
-    console.log('Elimina elemento');
     this.reviewsService.deleteReview(id).subscribe(() => {
       this.listaReview$ = this.reviewsService.getReviews();
     });
-    console.log('Done Component');
   }
 
   ricerca(keyword: string) {

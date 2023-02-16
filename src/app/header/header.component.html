@@ -9,12 +9,14 @@
         <div id="burg2" class="burger"></div>
       </label>
       <ul class="content_nav">
-        <li><p class="area-riservata">Area Riservata |</p></li>
-        <li><a routerLink="/">HOME</a></li>
-        <li><a routerLink="/lista-videogiochi">VIDEOGIOCHI</a></li>
-        <li><a routerLink="/lista-categorie">CATEGORIE</a></li>
-        <li><a routerLink="/lista-news">NEWS</a></li>
-        <li><a routerLink="/lista-reviews">REVIEWS</a></li>
+        <li><p class="area-riservata">Area Riservata</p></li>
+        <li *ngIf="loggedUser$ | async as loggedUser"><p class="area-riservata"><button mat-stroked-button class="btn-logout" (click)="onLogout()">Logout</button> |</p></li>
+        <li *ngIf="isLogged$ | async" [ngClass]="{'underline' : (selectedPath == '' || selectedPath == 'lista-news' || selectedPath == 'form-news') }"><a routerLink="/lista-news">NEWS</a></li>
+        <li *ngIf="isLogged$ | async" [ngClass]="{'underline' : (selectedPath == 'lista-reviews' || selectedPath == 'form-review') }"><a routerLink="/lista-reviews">REVIEWS</a></li>
+        <li *ngIf="isLogged$ | async" [ngClass]="{'underline' : (selectedPath == 'lista-videogiochi' || selectedPath == 'nuovo-videogioco') }"><a routerLink="/lista-videogiochi">VIDEOGIOCHI</a></li>
+        <li *ngIf="isLogged$ | async" [ngClass]="{'underline' : (selectedPath == 'lista-categorie' || selectedPath == 'nuova-categoria') }"><a routerLink="/lista-categorie">CATEGORIE</a></li>
+        <li *ngIf="!(isLogged$ | async)" [ngClass]="{'underline' : (selectedPath == 'login') }"><a routerLink="/login">LOGIN</a></li>
+        <li *ngIf="!(isLogged$ | async)" [ngClass]="{'underline' : (selectedPath == 'sign-up') }"><a routerLink="/sign-up">REGISTER</a></li>
       </ul>
     </nav>
   </div>

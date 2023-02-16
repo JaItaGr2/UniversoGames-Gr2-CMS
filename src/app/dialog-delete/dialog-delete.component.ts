@@ -8,5 +8,18 @@ import { ListaVideogiochiComponent } from '../lista-videogiochi/lista-videogioch
   styleUrls: ['./dialog-delete.component.css']
 })
 export class DialogDeleteComponent {
-  constructor(public dialogRef: MatDialogRef<ListaVideogiochiComponent>) {}
+  clickDelete = false;
+
+  constructor(
+    public  dialogRef: MatDialogRef<ListaVideogiochiComponent>
+  ) {
+    dialogRef.beforeClosed().subscribe(
+      result => dialogRef.close(this.clickDelete));
+  }
+
+
+  onClickDelete() {
+    this.clickDelete = true;
+    this.dialogRef.close(true);
+  }
 }

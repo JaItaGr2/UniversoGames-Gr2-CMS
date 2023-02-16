@@ -1,7 +1,45 @@
 .mat-stepper-horizontal {
-    margin-top: 8px;
-  }
-  
-  .mat-mdc-form-field {
-    margin-top: 16px;
-  }
+  margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+
+.container {
+  margin-top: 200px !important;
+  max-width: 900px;
+  margin: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container > div {
+  text-align: center;
+}
+
+.btn-loggati {
+  padding: 10px;
+}
+
+.btn-loggati > a {
+  text-decoration: none;
+  color: #3f51b5;
+  font-weight: 600;
+}
+
+.register-input {
+  max-width: 300px;
+  width: 100%;
+}
+
+.final-step-container {
+  margin: auto;
+  text-align: center;
+  padding-top: 50px;
+}

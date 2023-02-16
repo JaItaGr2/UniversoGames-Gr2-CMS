@@ -1,29 +1,42 @@
 <div class="container">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="example-container">
-        <mat-form-field appearance="fill">
-          <mat-label>Inserisci l'email</mat-label>
-          <input
-            matInput
-            placeholder="pat@example.com"
-            [formControl]="email"
-            required
-          />
-          <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="fill">
-          <mat-label>Inserisci password</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-        </mat-form-field>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Inserisci l'email</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="pat@example.com"
+          formControlName="email"
+          required
+        />
+        <mat-error *ngIf="form.get('email')!.invalid">{{ getErrorMessage() }}</mat-error>
+      </mat-form-field>
 
-        <button mat-raised-button color="primary" type="submit">Login</button>
-      </div>
-    </form>
-    <div>
-      <a routerLink="sign-up">Registrati</a>
+      <mat-form-field appearance="fill">
+        <mat-label>Inserisci password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+          required
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Login</button>
     </div>
+  </form>
+  <div class="btn-registrati" >
+    <a routerLink="/sign-up">Registrati</a>
   </div>
+</div>

@@ -17,59 +17,67 @@ const routes: Routes =
   {
     path: '',
     component: ListaNewsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path:'nuova-categoria',
     component: NuovaCategoriaComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path:'nuovo-videogioco',
     component: NuovoVideogiocoComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path:'nuova-categoria/:id',
     component: NuovaCategoriaComponent,
+    canActivate: [AuthGuard],
   },
   {
     path:'nuovo-videogioco/:id',
     component: NuovoVideogiocoComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'form-news',
     component: FormNewsComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'form-news/:id',
     component: FormNewsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'form-review',
     component: FormReviewComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'form-review/:id',
     component: FormReviewComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path:'lista-videogiochi',
     component: ListaVideogiochiComponent,
+    canActivate: [AuthGuard],
   },
   {
     path:'lista-categorie',
     component: ListaCategorieComponent,
+    canActivate: [AuthGuard],
   },
   {
     path:'lista-news',
     component: ListaNewsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path:'lista-reviews',
     component: ListaReviewsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path:'login',

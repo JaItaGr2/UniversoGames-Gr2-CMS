@@ -49,8 +49,6 @@ export class FormReviewComponent implements OnInit {
         this.isEditMode = true;
         this.reviewsService.getReview(this.idReviewDaModificare).pipe(
           map((val: Review) => {
-            console.log('ok');
-            console.log(val);
             return this.form = new FormGroup({
               title: new FormControl(val.title),
               publicationDate: new FormControl(val.publicationDate),
@@ -65,7 +63,7 @@ export class FormReviewComponent implements OnInit {
               }),
             });
           })
-        ).subscribe(console.log);
+        ).subscribe();
       }
     });
   }
@@ -95,12 +93,10 @@ export class FormReviewComponent implements OnInit {
 
     if (this.isEditMode) {
       formResponse._id = this.idReviewDaModificare;
-      console.log(formResponse);
       this.reviewsService.updateReview(formResponse).subscribe(() => {
         this.reviewsService.getReview(this.idReviewDaModificare);
       });
     } else {
-      console.log(formResponse);
       this.reviewsService.addReview(formResponse).subscribe(() => {
         this.reviewsService.getReviews();
       });

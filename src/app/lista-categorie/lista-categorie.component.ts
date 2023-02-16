@@ -20,11 +20,9 @@ export class ListaCategorieComponent implements OnInit{
   }
 
   onClickDelete(_id: string){
-    console.log('Elimina elemento');
     this.categorieService.deleteCategoria(_id).subscribe(() =>{
       this.categorie$ = this.categorieService.getCategorie();
     });
-    console.log('Done Component');
   }
 
 

@@ -6,3 +6,20 @@ body {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.color-snackbar {
+    --mdc-snackbar-container-color: #3f51b5 !important;
+    opacity: 0.8 !important;
+    border-radius: 5px;
+    display: flex !important;
+    justify-content: center !important;
+    width: fit-content !important;
+    font-size: medium !important;
+}
+
+.error-snackbar {
+    --mdc-snackbar-container-color: #f44336  !important;
+    color: black !important;
+    opacity: 0.8 !important;
+    border-radius: 5px;
+}

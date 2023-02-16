@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject, map } from 'rxjs';
 import { User } from '../model/user';
 
 @Injectable({
@@ -9,10 +9,16 @@ import { User } from '../model/user';
 export class AuthService {
   private users: User[] = [
     {
+      name: 'Admin',
+      email: 'admin@admin.com',
+      password: 'admin',
+      role: 'admin',
+    },
+    {
       name: 'Luca',
       email: 'pippo@example.com',
       password: 'qwerty',
-      role: 'admin',
+      role: 'user',
     },
     {
       name: 'Mara',
@@ -21,58 +27,52 @@ export class AuthService {
       role: 'admin',
     },
   ];
-
-  private userLogged?: User;
-
-  private isLogged = true;
-
-  isLoggedChanged = new Subject<boolean>();
-
+  
   constructor(private router: Router) {}
 
-  getIsLogged() {
-    return this.isLogged;
-  }
+  private loggedUserSubject = new BehaviorSubject<User | null>(null);
+  readonly loggedUser$ = this.loggedUserSubject.asObservable();
+
+  readonly isLogged$ = this.loggedUser$.pipe(
+    map((loggedUser) => {
+      if (loggedUser === null) {
+        return false;
+      } else {
+        return true;
+      }
+    }),
+  );
+
+  readonly isAdmin$ = this.loggedUser$.pipe(
+    map((logged) => logged?.role === 'admin')
+  );
+
 
   login(email: string, password: string) {
-    this.users.forEach(user => {
-      if (email === user.email && password === user.password) {
-        this.isLogged = true;
-        this.userLogged = user;
+    const existingUser = this.users.find(
+      (u) => u.email === email && u.password === password
+    );
 
-        localStorage.setItem('nameUser', user.name);
-        localStorage.setItem('currentUser', user.email);
-        localStorage.setItem('roleUser', user.role);
-        //const user = localStorage.getItem('currentUser');
-      }
-    });
-    this.isLoggedChanged.next(this.isLogged);
+    if (existingUser) {
+      this.loggedUserSubject.next(existingUser!);
+      this.router.navigateByUrl('/');
+    }
 
-    this.router.navigateByUrl('/');
-    return this.isLogged;
+    return !!existingUser;
   }
 
   logout() {
-    this.isLogged = false;
-    this.userLogged = undefined;
-
-    localStorage.removeItem('nameUser');
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('roleUser');
-    
-    this.isLoggedChanged.next(this.isLogged);
+    this.loggedUserSubject.next(null);
 
     this.router.navigateByUrl('/login');
-    return this.isLogged;
   }
 
-  signInUser(name: string, email: string, password: string) {
+  signUpUser(name: string, email: string, password: string) {
     this.users.push({
       name,
       email,
       password,
       role: 'admin'
-    })
-    this.login(email, password);
+    });
   }
 }

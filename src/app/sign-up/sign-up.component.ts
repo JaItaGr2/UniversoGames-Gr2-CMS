@@ -1,91 +1,133 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent {
-  email = new FormControl('', [Validators.required, ]); //Validators.email
-  //emailRepeat = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required, Validators.minLength(8)]);
-  passwordRepeat = new FormControl('', [Validators.required, Validators.email]);
+  firstFormGroup = this._formBuilder.group({
+    nomeCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group(
+    {
+      emailCtrl: new FormControl('', [Validators.required, Validators.email]),
+      emailCtrlRepeat: new FormControl('', [
+        Validators.required,
+        Validators.email,
+      ]),
+    },
+    { validators: repetitionEmailValidator }
+  );
+  thirdFormGroup = this._formBuilder.group(
+    {
+      passwordCtrl: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+      passwordCtrlRepeat: new FormControl('', [Validators.required]),
+    },
+    { validators: repetitionPasswordValidator }
+  );
+  isEditable = true;
   hide = true;
+  finalStep = false;
 
   getErrorMsgEmail() {
-    if (this.email.hasError('required')) {
-      return 'Devi compilare questo campo';
+    let errore = '';
+    if (this.secondFormGroup.get('emailCtrl')!.hasError('required')) {
+      errore = 'Devi compilare questo campo';
+    } else if (this.secondFormGroup.get('emailCtrl')!.hasError('email')) {
+      errore = 'Email non valida';
     }
-
-    return this.email.hasError('email') ? 'Email non valida' : '';
+    return errore;
   }
   getErrorMsgEmailRepeat() {
-    /*if (this.emailRepeat.hasError('required')) {
-      return 'Devi compilare questo campo';
+    let errore = '';
+    if (this.secondFormGroup.get('emailCtrlRepeat')!.hasError('required')) {
+      errore = 'Devi compilare questo campo';
+    } else if (this.secondFormGroup.hasError('emailCoincidenceError')) {
+      errore = 'Le due email non corrispondono';
+    } else if (this.secondFormGroup.get('emailCtrl')!.hasError('email')) {
+      errore = 'Le due email non corrispondono';
     }
-
-    return this.emailRepeat.hasError('email') ? 'Le due email non corrispondono' : '';*/
+    return errore;
   }
 
   getErrorMsgPassword() {
-    if (this.password.hasError('required')) {
-      return 'Devi compilare questo campo';
+    let errore = '';
+    if (this.thirdFormGroup.get('passwordCtrl')!.hasError('required')) {
+      errore = 'Devi compilare questo campo';
+    } else if (this.secondFormGroup.get('emailCtrl')!.hasError('minLength')) {
+      errore = 'Password troppo corta';
     }
-
-    return this.password.hasError('email') ? 'Email non valida' : '';
+    return errore;
   }
   getErrorMsgPasswordRepeat() {
-    if (this.passwordRepeat.hasError('required')) {
-      return 'Devi compilare questo campo';
+    let errore = '';
+    if (this.thirdFormGroup.get('passwordCtrlRepeat')!.hasError('required')) {
+      errore = 'Devi compilare questo campo';
+    } else if (this.thirdFormGroup.hasError('passwordCoincidenceError')) {
+      errore = 'Le due password non corrispondono';
+    } else if (this.secondFormGroup.get('emailCtrl')!.hasError('minLength')) {
+      errore = 'Le due password non corrispondono';
     }
-
-    return this.passwordRepeat.hasError('email') ? 'Le due password non corrispondono' : '';
+    return errore;
   }
-
-
-
-
-
-  firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-    secondCtrlRepeat: ['', Validators.required],
-  });
-  thirdFormGroup = this._formBuilder.group({
-    thirdCtrl: ['', Validators.required],
-    thirdCtrlRepeat: ['', Validators.required],
-  });
-  isEditable = true;
-  nome = '';
-  emailSign = '';
-  pwSign = '';
 
   constructor(
     private _formBuilder: FormBuilder,
-    private authService: AuthService,
+    private authService: AuthService
   ) {}
 
-  validateRepeat(campo: string) {
-    /*if (campo === 'second') {
-      if (this.secondFormGroup.getRawValue().secondCtrl === this.secondFormGroup.getRawValue().secondCtrlRepeat) {
-        return true;
-      }
-    }
-    else if (campo === 'third') {
-      if (this.thirdFormGroup.getRawValue().thirdCtrl === this.thirdFormGroup.getRawValue().thirdCtrlRepeat) {
-        return true;
-      }
-    }
-    return false;*/
-    return false;
+  registrati() {
+    const { nomeCtrl } = this.firstFormGroup.getRawValue();
+    const { emailCtrl } = this.secondFormGroup.getRawValue();
+    const { passwordCtrl } = this.thirdFormGroup.getRawValue();
+
+    this.authService.signUpUser(nomeCtrl!, emailCtrl!, passwordCtrl!);
   }
 
-  register() {
-    this.authService.signInUser(this.nome, this.emailSign, this.pwSign);
+  primoLogin() {
+    const { emailCtrl } = this.secondFormGroup.getRawValue();
+    const { passwordCtrl } = this.thirdFormGroup.getRawValue();
+
+    this.authService.login(emailCtrl!, passwordCtrl!);
   }
 
 }
+
+export const repetitionEmailValidator: ValidatorFn = (
+  control: AbstractControl
+): ValidationErrors | null => {
+  const emailVerification = control.get('emailCtrl');
+  const emailRepeatVerification = control.get('emailCtrlRepeat');
+
+  return emailVerification &&
+    emailRepeatVerification &&
+    emailVerification.getRawValue() !== emailRepeatVerification.getRawValue()
+    ? { emailCoincidenceError: true }
+    : null;
+};
+
+export const repetitionPasswordValidator: ValidatorFn = (
+  control: AbstractControl
+): ValidationErrors | null => {
+  const passwordVerification = control.get('passwordCtrl');
+  const passwordRepeatVerification = control.get('passwordCtrlRepeat');
+  return passwordVerification &&
+    passwordRepeatVerification &&
+    passwordVerification.getRawValue() !==
+      passwordRepeatVerification.getRawValue()
+    ? { passwordCoincidenceError: true }
+    : null;
+};

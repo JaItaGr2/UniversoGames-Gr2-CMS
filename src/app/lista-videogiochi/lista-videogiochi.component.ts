@@ -39,7 +39,6 @@ export class ListaVideogiochiComponent implements OnInit {
       enterAnimationDuration,
       exitAnimationDuration,
     }).afterClosed().subscribe(result => {
-      console.log(result);
       if (result) {
         this.onClickDelete();
       }

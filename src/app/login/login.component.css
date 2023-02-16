@@ -1,7 +1,7 @@
 .container {
-    max-width: 600px;
+    max-width: 500px;
     margin: auto;
-    margin-top: 250px;
+    padding-top: 250px;
 }
 
 form {
@@ -11,4 +11,14 @@ form {
 
 form > div {
     display: contents;
+}
+
+.btn-registrati {
+    margin-top: 20px;
+}
+
+.btn-registrati > a {
+    text-decoration: none;
+    color: #3f51b5;
+    font-weight: 600;
 }

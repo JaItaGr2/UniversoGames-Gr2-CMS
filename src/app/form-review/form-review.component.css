@@ -29,6 +29,7 @@
   min-width: 150px;
   max-width: 500px;
   width: 100%;
+  margin: auto;
 }
 
 .example-full-width {
@@ -45,4 +46,8 @@ td {
 
 .flexare{
   display: flex;
+}
+
+.example-form {
+  font-weight: 900;
 }

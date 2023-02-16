@@ -39,12 +39,51 @@
 
 -->
 
-<div class="container">
 
-  <section style="margin-left: .5rem;">
+
+<div class="container">
+  <section style="margin-left: .5rem;" class="top-section">
     <div class="example-button-row">
       <button [routerLink]="['/form-review']" mat-raised-button color="primary">Add Review +</button>
     </div>
+    <div>
+      <!-- Ordinamento -->
+      <mat-form-field appearance="fill">
+        <mat-label>Ordina per</mat-label>
+        <mat-select [formControl]="ordinamentoControl" (valueChange)="ordinaPer()">
+          <mat-optgroup [label]="'Voto'">
+            <mat-option [value]="'voto-decrescente'" selected>
+              Voto Decrescente
+            </mat-option>
+            <mat-option [value]="'voto-crescente'">
+              Voto Crescente
+            </mat-option>
+          </mat-optgroup>
+          <mat-optgroup [label]="'Titolo'">
+            <mat-option [value]="'titolo-decrescente'" selected>
+              Titolo Decrescente
+            </mat-option>
+            <mat-option [value]="'titolo-crescente'">
+              Titolo Crescente
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+      
+       <!-- Ricerca globale -->
+      <mat-form-field class="example-form-field">
+        <mat-label>Cerca tra i titoli</mat-label>
+        <input matInput placeholder="Titolo" type="text" [(ngModel)]="keyRicerca">
+        <button *ngIf="keyRicerca" matSuffix mat-icon-button aria-label="Clear" (click)="keyRicerca=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      
+      <button mat-raised-button color="primary" (click)="ricerca(keyRicerca)">
+        <mat-icon>search</mat-icon>
+        Cerca
+      </button>
+      </div>
   </section>
 
 <div *ngFor="let l of listaReview$ | async">

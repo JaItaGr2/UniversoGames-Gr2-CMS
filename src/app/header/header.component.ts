@@ -10,7 +10,7 @@ import { User } from '../model/user';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  selectedPath = '';
+  selectedPath = 'home';
   loggedUser$!: Observable<User | null>;
   isLogged$!: Observable<boolean>;
 

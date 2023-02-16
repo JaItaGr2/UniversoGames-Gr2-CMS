@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReviewsService } from '../service/reviews.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Review } from '../model/review';
@@ -14,11 +14,11 @@ import { VideogiochiService } from '../service/videogiochi.service';
 })
 export class FormReviewComponent implements OnInit {
   form: FormGroup = new FormGroup({
-    title: new FormControl(''),
-    publicationDate: new FormControl(''),
-    content: new FormControl(''),
-    score: new FormControl(undefined),
-    reviewerName: new FormControl(''),
+    title: new FormControl('', [Validators.required]),
+    publicationDate: new FormControl('', [Validators.required]),
+    content: new FormControl('', [Validators.required]),
+    score: new FormControl(undefined, [Validators.required]),
+    reviewerName: new FormControl('', [Validators.required]),
     imageUrls: new FormArray([new FormControl('')]),
     reviewedGame: new FormGroup({
       id: new FormControl(''),

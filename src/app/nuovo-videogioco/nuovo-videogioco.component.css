@@ -46,3 +46,11 @@
   .flexare{
     display: flex;
   }
+
+  .example-chip-list {
+    width: 100%;
+  }
+
+  .cipColor {
+    background-color: #3f51b544 !important;
+  }

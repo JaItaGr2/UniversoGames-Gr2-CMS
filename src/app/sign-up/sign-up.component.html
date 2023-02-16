@@ -1,0 +1,126 @@
+<div>
+	<div><p>Sei già registrato? </p><a routerLink="login">Login</a></div>
+  <form action="">
+
+		<!-- Nome step -->
+    <mat-stepper linear #stepper>
+      <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Il tuo nome</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>Nome</mat-label>
+            <input
+              matInput
+              [(ngModel)]="nome"
+              formControlName="firstCtrl"
+              placeholder="Cognome, Nome"
+              required
+            />
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Avanti</button>
+          </div>
+        </form>
+      </mat-step>
+
+			<!-- Email step -->
+      <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Registra email</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>Inserisci l'email</mat-label>
+            <input
+              matInput
+							[(ngModel)]="email"
+              placeholder="pat@example.com"
+              [formControl]="email"
+              formControlName="secondCtrl"
+              required
+            />
+            <mat-error *ngIf="email.invalid">{{ getErrorMsgEmail() }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Ripeti email</mat-label>
+            <input
+              matInput
+							[(ngModel)]="emailRepeat"
+              formControlName="secondCtrlRepeat"
+              required
+            />
+            <mat-error *ngIf="validateRepeat('second')">{{
+              getErrorMsgEmailRepeat()
+            }}</mat-error>
+          </mat-form-field>
+
+          <div>
+            <button mat-button matStepperPrevious>Indietro</button>
+            <button
+              mat-button
+              matStepperNext
+              [disabled]="validateRepeat('second')"
+            >
+              Avanti
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+			<!-- Password step -->
+      <mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Crea password</ng-template>
+
+					<mat-form-field appearance="fill">
+						<mat-label>La tua Password</mat-label>
+						<input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password" formControlName="thirdCtrl" required  />
+						<button
+							mat-icon-button
+							matSuffix
+							(click)="hide = !hide"
+							[attr.aria-label]="'Hide password'"
+							[attr.aria-pressed]="hide"
+						>
+							<mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+						</button>
+						<mat-error *ngIf="validateRepeat('third')">{{
+              getErrorMsgPassword()
+            }}</mat-error>
+					</mat-form-field>
+
+					<mat-form-field appearance="fill">
+						<mat-label>Ripeti Password</mat-label>
+						<input matInput type="password" [(ngModel)]="passwordRepeat" formControlName="thirdCtrlRepeat" required  />
+						<mat-error *ngIf="validateRepeat('second')">{{
+              getErrorMsgPasswordRepeat()
+            }}</mat-error>
+					</mat-form-field>
+          
+          <div>
+            <button mat-button matStepperPrevious>Indietro</button>
+            <button
+              mat-button
+              matStepperNext
+              [disabled]="validateRepeat('third')"
+              (click)="isEditable = false"
+            >
+              Registrati
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+			<!-- Fine step -->
+      <mat-step>
+        <ng-template matStepLabel>Fatto</ng-template>
+        <p>Registrazione completata!</p>
+        <h2>Benvenuto/a {{ nome }}</h2>
+        <div>
+          <button mat-button (click)="stepper.reset()" routerLink="/">
+            Vai alla home-page
+          </button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </form>
+</div>

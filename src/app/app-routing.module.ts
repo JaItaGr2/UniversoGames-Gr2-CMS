@@ -9,6 +9,8 @@ import { NuovoVideogiocoComponent } from './nuovo-videogioco/nuovo-videogioco.co
 import { FormReviewComponent } from './form-review/form-review.component';
 import { ListaReviewsComponent } from './lista-reviews/lista-reviews.component';
 import { AuthGuard } from './guard/auth.guard';
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = 
 [
@@ -69,7 +71,15 @@ const routes: Routes =
     path:'lista-reviews',
     component: ListaReviewsComponent,
   },
- 
+  {
+    path:'login',
+    component: LoginComponent,
+  },
+  {
+    path:'sign-up',
+    component: SignUpComponent,
+  },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

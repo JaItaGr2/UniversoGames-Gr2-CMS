@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
 
 @Component({
@@ -9,15 +9,26 @@ import { AuthService } from '../service/auth.service';
 })
 export class LoginComponent {
   form = new FormGroup({
-    username: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl(''),
   });
+
+  hide = true;
+  email = new FormControl('', [Validators.required, Validators.email]);
+
+  getErrorMessage() {
+    if (this.email.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.email.hasError('email') ? 'Not a valid email' : '';
+  }
 
   constructor(private authService: AuthService) {}
 
   onSubmit() {
-    const { username, password } = this.form.getRawValue();
-    if (this.authService.login(username!, password!)) {
+    const { email, password } = this.form.getRawValue();
+    if (this.authService.login(email!, password!)) {
       alert('Login effettuato con successo');
     } else {
       alert('Login errato');

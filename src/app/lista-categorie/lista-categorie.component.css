@@ -14,6 +14,12 @@
 .example-button-row {
   display: table-cell;
   max-width: 600px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-content: space-around;
 }
 
 .example-button-row .mat-mdc-button-base {

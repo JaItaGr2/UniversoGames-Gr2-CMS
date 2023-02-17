@@ -25,6 +25,10 @@ export class ListaCategorieComponent implements OnInit {
     this.categorie$ = this.categorieService.getCategorie();
   }
 
+  updateReview() {
+    this.categorie$ = this.categorieService.getCategorie();
+  }
+
   openDialog(
     enterAnimationDuration: string,
     exitAnimationDuration: string

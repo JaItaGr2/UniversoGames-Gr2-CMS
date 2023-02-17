@@ -28,7 +28,7 @@ export class FormNewsComponent implements OnInit {
     tags: new FormArray([]),
   });
 
-  editmode = false;
+  isEditMode = false;
   idnewsdamodificare = '';
 
   addOnBlur = true;
@@ -48,7 +48,7 @@ export class FormNewsComponent implements OnInit {
       this.idnewsdamodificare = params['id'];
 
       if (this.idnewsdamodificare) {
-        this.editmode = true;
+        this.isEditMode = true;
 
         this.newsService
           .getNew(this.idnewsdamodificare)
@@ -100,7 +100,7 @@ export class FormNewsComponent implements OnInit {
     let formResponse = this.form.getRawValue();
     formResponse.__v = 0;
 
-    if (this.editmode) {
+    if (this.isEditMode) {
       formResponse._id = this.idnewsdamodificare;
       this.newsService.editNews(formResponse).subscribe(() => {
         this.newsService.getNew(this.idnewsdamodificare);
@@ -112,7 +112,7 @@ export class FormNewsComponent implements OnInit {
     }
 
     this.form.reset();
-    this.editmode = false;
+    this.isEditMode = false;
     this.idnewsdamodificare = '';
     this.router.navigateByUrl('/');
   }

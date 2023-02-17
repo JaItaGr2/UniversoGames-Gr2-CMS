@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
 
 @Component({
   selector: 'app-lista-reviews',
@@ -17,25 +18,44 @@ export class ListaReviewsComponent implements OnInit {
   ordinamentoControl = new FormControl('');
   keyRicerca = '';
   titolo = new FormControl('');
+  idDaEliminare = '';
 
   constructor(
     private reviewsService: ReviewsService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
     this.listaReview$ = this.reviewsService.getReviews();
   }
 
-  onDelete(id: string) {
-    this.reviewsService.deleteReview(id).subscribe(() => {
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(DialogDeleteComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    }).afterClosed().subscribe(result => {
+      if (result) {
+        this.onDelete();
+      }
+      this.idDaEliminare = '';
+    }); 
+  }
+
+  updateReviews() {
+    this.listaReview$ = this.reviewsService.getReviews();
+    this.ricerca();
+  }
+
+  onDelete() {
+    this.reviewsService.deleteReview(this.idDaEliminare).subscribe(() => {
       this.listaReview$ = this.reviewsService.getReviews();
     });
   }
 
-  ricerca(keyword: string) {
-    this.listaReview$ = this.reviewsService.ricercaKey(keyword);
+  ricerca() {
+    this.listaReview$ = this.reviewsService.ricercaKey(this.keyRicerca);
     if (this.titolo.value) {
       this.listaReview$ = this.reviewsService.filtraTitolo(
         this.titolo.value,

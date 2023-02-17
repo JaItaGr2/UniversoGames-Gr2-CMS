@@ -1,10 +1,10 @@
-.aggiungi{
+.aggiungi {
   display: block;
   margin: auto;
 }
 
-.container{
-    margin-top: 4.6rem;
+.container {
+  margin-top: 4.6rem;
 }
 
 section {
@@ -21,6 +21,24 @@ section {
 .example-button-row {
   display: table-cell;
   max-width: 600px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+
+.filtraggi-btns {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+
+#btn-cerca {
+  height: 56px;
 }
 
 .example-button-row .mat-mdc-button-base {
@@ -50,7 +68,7 @@ section {
 }
 
 .mat-divider {
-  width: 97%;
+  width: 99.5%;
   margin: auto;
 }
 

@@ -1,23 +1,37 @@
 <div class="container">
-
-    <section style="margin-left: .5rem;">
-        <div class="example-button-row">
-          <button [routerLink]="['/nuova-categoria']" mat-raised-button color="primary">Add Category</button>
-        </div>
-      </section>
-
-    <div *ngFor="let c of categorie$ | async">
-    
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>{{ c.name }}</mat-card-title>
-              <mat-card-subtitle>Categoria</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-actions align="end">
-              <button mat-button (click)="onClickDelete(c._id)">DELETE</button>
-              <button mat-button [routerLink]="['/nuova-categoria', c._id]">DETAIL</button>
-            </mat-card-actions>
-          </mat-card>
-    
+  <section style="margin-left: 0.5rem">
+    <div class="example-button-row">
+      <button
+        [routerLink]="['/nuova-categoria']"
+        mat-raised-button
+        color="primary"
+      >
+        <mat-icon>add</mat-icon>Aggiungi Categoria
+      </button>
     </div>
+  </section>
+
+  <div *ngFor="let c of categorie$ | async">
+    <mat-card>
+      <mat-divider></mat-divider>
+      <mat-card-header>
+        <mat-card-title>{{ c.name }}</mat-card-title>
+        <mat-card-subtitle>Categoria</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <button
+          (click)="idDaEliminare = c._id; openDialog('300ms', '300ms')"
+          mat-button
+          color="warn"
+        >
+          <!--(click)="onClickDelete(v._id)"-->
+          <mat-icon>delete</mat-icon>
+          DELETE
+        </button>
+        <button mat-button [routerLink]="['/nuova-categoria', c._id]">
+          <mat-icon>edit</mat-icon>DETAIL
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

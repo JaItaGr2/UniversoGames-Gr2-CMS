@@ -36,6 +36,19 @@ export class AuthService {
   readonly isLogged$ = this.loggedUser$.pipe(
     map((loggedUser) => {
       if (loggedUser === null) {
+        try {
+          const email = localStorage.getItem('emailLoggedIn');
+          const existingUser = this.users.find(
+            (u) => u.email === email
+          );
+          if (existingUser) {
+            this.loggedUserSubject.next(existingUser!);
+          }
+          return !!existingUser;
+        } catch(err) {
+          console.log('error:' + err);
+        }
+
         return false;
       } else {
         return true;
@@ -53,6 +66,12 @@ export class AuthService {
       (u) => u.email === email && u.password === password
     );
 
+    try {
+      localStorage.setItem('emailLoggedIn', email);
+    } catch(err) {
+      console.log('error:' + err);
+    }
+
     if (existingUser) {
       this.loggedUserSubject.next(existingUser!);
       this.router.navigateByUrl('/');
@@ -62,6 +81,7 @@ export class AuthService {
   }
 
   logout() {
+    localStorage.clear();
     this.loggedUserSubject.next(null);
 
     this.router.navigateByUrl('/login');

@@ -1,38 +1,55 @@
 <div class="container">
-<form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Titolo</mat-label>
+            <input matInput formControlName="title" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Categoria</mat-label>
+            <input matInput formControlName="category" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Image Url</mat-label>
+            <input matInput formControlName="imageUrl" />
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
 
-  <table class="example-full-width" cellspacing="0"><tr>
-    <td><mat-form-field class="example-full-width">
-      <mat-label>Titolo</mat-label>
-      <input matInput formControlName="title" />
-    </mat-form-field></td>
-    <td><mat-form-field class="example-full-width">
-      <mat-label>Categoria</mat-label>
-      <input matInput formControlName="category" />
-    </mat-form-field></td>
-    <td><mat-form-field class="example-full-width">
-      <mat-label>Image Url</mat-label>
-      <input matInput formControlName="imageUrl" />
-    </mat-form-field></td>
-  </tr></table>
+    <p>
+      <mat-form-field class="example-full-width">
+        <mat-label>Contenuto</mat-label>
+        <textarea
+          matInput
+          placeholder="Ex. 100 Main St"
+          formControlName="content"
+        ></textarea>
+      </mat-form-field>
+    </p>
 
-  <p>
-    <mat-form-field class="example-full-width">
-      <mat-label>Contenuto</mat-label>
-      <textarea matInput placeholder="Ex. 100 Main St" formControlName="content" ></textarea>
-    </mat-form-field>
-  </p>
-
-  <table class="example-full-width" cellspacing="0"><tr>
-    <td><mat-form-field class="example-full-width">
-      <mat-label>Data Pubblicazione</mat-label>
-      <input matInput formControlName="publicationDate" />
-    </mat-form-field></td>
-    <td><mat-form-field class="example-full-width">
-      <mat-label>Nome Autore</mat-label>
-      <input matInput formControlName="authorName" />
-    </mat-form-field></td>
-  </tr></table>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Data Pubblicazione</mat-label>
+            <input matInput formControlName="publicationDate" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Nome Autore</mat-label>
+            <input matInput formControlName="authorName" />
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
 
     <mat-form-field class="example-chip-list" appearance="fill">
       <mat-label>Tags</mat-label>
@@ -60,7 +77,22 @@
 
     <section style="margin-left: 0.5rem">
       <div class="example-button-row">
-        <button type="submit" mat-raised-button color="primary">Save</button>
+        <button
+          mat-stroked-button
+          routerLink="/"
+          style="width: 100px"
+          color="primary"
+        >
+          Indietro
+        </button>
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          style="width: 100px"
+        >
+          <mat-icon>save</mat-icon>{{ isEditMode ? "Modifica" : "Aggiungi" }}
+        </button>
       </div>
     </section>
   </form>

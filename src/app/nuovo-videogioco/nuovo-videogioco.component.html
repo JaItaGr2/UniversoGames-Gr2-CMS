@@ -16,7 +16,7 @@
         </td>
         <td>
           <mat-form-field class="example-full-width">
-            <mat-label>Categoria</mat-label>
+            <mat-label>Console</mat-label>
             <input matInput formControlName="category" />
           </mat-form-field>
         </td>
@@ -28,7 +28,7 @@
             <input matInput formControlName="releaseDate" />
           </mat-form-field>
         </td>
-        <td>
+        <td colspan="2">
           <mat-form-field class="example-full-width">
             <mat-label>Image URL</mat-label>
             <input matInput formControlName="coverImage" />
@@ -38,7 +38,7 @@
       <tr>
         <td>
           <mat-form-field class="example-full-width">
-            <mat-label>Console</mat-label>
+            <mat-label>Genere</mat-label>
             <input matInput formControlName="genre" />
           </mat-form-field>
         </td>
@@ -58,59 +58,73 @@
     </table>
 
     <div formGroupName="languages">
-    <mat-form-field class="example-chip-list" appearance="fill">
-      <mat-label>Language</mat-label>
-      <mat-chip-grid #chipGrid aria-label="Tags selection" formArrayName="voice">
-        <mat-chip-row
-          class="cipColor"
-          *ngFor="let tag of voiceFormArray.value; let i = index"
-          (removed)="remove(i)"
+      <mat-form-field class="example-chip-list" appearance="fill">
+        <mat-label>Language</mat-label>
+        <mat-chip-grid
+          #chipGrid
+          aria-label="Tags selection"
+          formArrayName="voice"
         >
-          {{ tag }}
-          <button matChipRemove [attr.aria-label]="'remove ' + tag">
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </mat-chip-row>
-      </mat-chip-grid>
-      <input
-        placeholder="Language..."
-        #tagInput
-        [formControl]="voiceCtrl"
-        [matChipInputFor]="chipGrid"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="add($event)"
-      />
-    </mat-form-field>
-  
+          <mat-chip-row
+            class="cipColor"
+            *ngFor="let tag of voiceFormArray.value; let i = index"
+            (removed)="remove(i)"
+          >
+            {{ tag }}
+            <button matChipRemove [attr.aria-label]="'remove ' + tag">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input
+          placeholder="Language..."
+          #tagInput
+          [formControl]="voiceCtrl"
+          [matChipInputFor]="chipGrid"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)"
+        />
+      </mat-form-field>
 
-  <mat-form-field class="example-chip-list" appearance="fill">
-      <mat-label>Subtitles</mat-label>
-      <mat-chip-grid #chipGrid2 aria-label="Tags selection" formArrayName="text">
-        <mat-chip-row
-          class="cipColor"
-          *ngFor="let tag of textFormArray.value; let i = index"
-          (removed)="removet(i)"
+      <mat-form-field class="example-chip-list" appearance="fill">
+        <mat-label>Subtitles</mat-label>
+        <mat-chip-grid
+          #chipGrid2
+          aria-label="Tags selection"
+          formArrayName="text"
         >
-          {{ tag }}
-          <button matChipRemove [attr.aria-label]="'remove ' + tag">
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </mat-chip-row>
-      </mat-chip-grid>
-      <input
-        placeholder="Subtitles..."
-        #textInput
-        [formControl]="textCtrl"
-        [matChipInputFor]="chipGrid2"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="addt($event)"
-      />
-    </mat-form-field>
-  </div>
+          <mat-chip-row
+            class="cipColor"
+            *ngFor="let tag of textFormArray.value; let i = index"
+            (removed)="removet(i)"
+          >
+            {{ tag }}
+            <button matChipRemove [attr.aria-label]="'remove ' + tag">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input
+          placeholder="Subtitles..."
+          #textInput
+          [formControl]="textCtrl"
+          [matChipInputFor]="chipGrid2"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="addt($event)"
+        />
+      </mat-form-field>
+    </div>
 
     <section style="margin-left: 0.5rem; margin-top: 2rem">
       <div class="example-button-row">
-      <button mat-stroked-button routerLink="/lista-categorie" style="width: 100px;" color="primary">Indietro</button>
+        <button
+          mat-stroked-button
+          routerLink="/lista-videogiochi"
+          style="width: 100px"
+          color="primary"
+        >
+          Indietro
+        </button>
         <button type="submit" mat-raised-button color="primary">
           <mat-icon>save</mat-icon>
           {{ isEditMode ? "Salva" : "Aggiungi" }}
@@ -119,5 +133,3 @@
     </section>
   </form>
 </div>
-
-

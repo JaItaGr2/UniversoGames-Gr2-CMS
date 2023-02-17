@@ -1,5 +1,7 @@
 .container{
-    margin-top: 5rem;
+    padding-top: 5rem;
+    margin: auto;
+    max-width: fit-content;
 }
 
 .form{
@@ -26,8 +28,7 @@
   }
 
   .example-form {
-    min-width: 150px;
-    max-width: 500px;
+    min-width: 350px;
     width: 100%;
   }
   

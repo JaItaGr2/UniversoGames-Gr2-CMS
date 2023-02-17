@@ -155,8 +155,7 @@ export class NuovoVideogiocoComponent implements OnInit {
 
     let formResponse = this.form.getRawValue();
     formResponse.__v = 0;
-    formResponse._id = '';
-
+    console.log(formResponse);
     if (this.isEditMode) {
       formResponse._id = this.idVideogiocoDaModificare;
       this.videogiochiService.updateVideogioco(formResponse).subscribe(() => {
@@ -171,6 +170,6 @@ export class NuovoVideogiocoComponent implements OnInit {
     this.form.reset();
     this.isEditMode = false;
     this.idVideogiocoDaModificare = '';
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/lista-videogiochi');
     }
 }

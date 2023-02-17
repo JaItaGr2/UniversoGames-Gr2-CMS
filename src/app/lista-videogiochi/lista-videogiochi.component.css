@@ -21,6 +21,12 @@ section {
 .example-button-row {
   display: table-cell;
   max-width: 600px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: space-around;
 }
 
 .example-button-row .mat-mdc-button-base {
@@ -50,10 +56,22 @@ section {
 }
 
 .mat-divider {
-  width: 97%;
+  width: 99.5%;
   margin: auto;
 }
 
 .mdc-card:hover {
   background-color: rgba(211, 211, 211, 0.349);
+}
+
+.filtraggi-btns {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+
+#btn-cerca {
+  height: 56px;
 }

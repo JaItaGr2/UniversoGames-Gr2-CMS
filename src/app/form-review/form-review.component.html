@@ -1,64 +1,5 @@
-<!--<div class="container">
-<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-
-  <input type="text" placeholder="Titolo" formControlName="title" />
-
-  <input
-    type="text"
-    placeholder="Data di pubblicazione"
-    formControlName="publicationDate"
-  />
-
-  <input type="text" placeholder="Contenuto" formControlName="content" />
-
-  <div class="form-stars-p">
-    <h4>Valutazione (1/10)</h4>
-    <input
-      type="number"
-      min="1"
-      max="10"
-      placeholder="6"
-      formControlName="score"
-    />
-
-  </div>
-
-  <input
-    type="text"
-    placeholder="Autore Recensione"
-    formControlName="reviewerName"
-  />
-
-  <div formArrayName="imageUrls">
-    <h3>
-      URL Immagini:
-      <button type="button" (click)="onAddImageUrls()">+</button>
-    </h3>
-    <div *ngFor="let _ of imageUrlsFormArray.controls; let i = index">
-      <input
-        type="text"
-        [formControlName]="i"
-        [placeholder]="'Immagine n°' + (i + 1)"
-      />
-      <button type="button" (click)="onRemoveImageUrls(i)">-</button>
-    </div>
-  </div>
-
-  <div formGroupName="reviewedGame">
-    <h3>Gioco Recensito</h3>
-    <h4>Id:</h4>
-    <input type="text" placeholder="Id" formControlName="id" />
-    <h4>Nome:</h4>
-    <input type="text" placeholder="Nome" formControlName="name" />
-  </div>
-
-  <button type="submit">{{ isEditMode ? "Modifica" : "Aggiungi" }}</button>
-</form>
-</div>-->
-
 <div class="container">
   <form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h1>Nuova Recensione</h1>
     <table class="example-full-width" cellspacing="0">
       <tr>
         <td>
@@ -145,8 +86,10 @@
 
     <section style="margin-left: 0.5rem">
       <div class="example-button-row">
-        <button type="submit" mat-raised-button color="primary">
-          {{ isEditMode ? "Modify" : "Save" }}
+        <button mat-stroked-button routerLink="/lista-reviews" style="width: 100px;" color="primary">Indietro</button>
+        <button type="submit" mat-raised-button color="primary" style="width: 100px;">
+          <mat-icon>save</mat-icon>
+          {{ isEditMode ? "Modifica" : "Aggiungi" }}
         </button>
       </div>
     </section>

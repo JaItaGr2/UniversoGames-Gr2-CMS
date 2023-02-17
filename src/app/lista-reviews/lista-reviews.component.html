@@ -1,63 +1,34 @@
-<!-- <body>
-  <main class="main">
-    <section class="container">
-      <div class="title">
-        <h2>Our reviews</h2>
-        <div class="underline"></div>
-      </div>
-      
-      <article class="review" *ngFor="let l of listaReview$ | async">
-        <p id="game">{{ l.reviewedGame.name }}</p>
-        <div class="imagecontainer">
-          <img
-            src="{{ l.imageUrls }}"
-            id="person-img"
-            alt="photo"
-            height="70px"
-            width="70px"
-          />
-        </div>
-        
-        <div
-          class="stars"
-          [ngStyle]="{ '--rating': l.score }"
-          aria-label="Rating of this product is 2.3 out of 5."
-        ></div>
-        
-        <h4 id="title">{{ l.title }}</h4>
-        <p id="name">{{ l.reviewerName }}</p>
-        <p id="date">{{ l.publicationDate }}</p>
-        <p id="info">{{ l.content }}</p>
-        <button [routerLink]="['/form-review', l._id]" class="random-btn">
-          Modifica
-        </button>
-        <button (click)="onDelete(l._id)" class="random-btn">Elimina</button>
-      </article>
-    </section>
-  </main>
-</body>
-
--->
-
-
-
 <div class="container">
-  <section style="margin-left: .5rem;" class="top-section">
+  <section style="padding-left: 0.5rem" class="top-section">
     <div class="example-button-row">
-      <button [routerLink]="['/form-review']" mat-raised-button color="primary">Add Review +</button>
+      <button [routerLink]="['/form-review']" mat-raised-button color="primary">
+        <mat-icon>add</mat-icon>Aggiungi Review
+      </button>
+
+      <!-- Aggiorna news -->
+      <button
+        mat-mini-fab
+        color="primary"
+        aria-label="Aggiorna reviews"
+        (click)="updateReviews()"
+      >
+        <mat-icon>update</mat-icon>
+      </button>
     </div>
-    <div>
+
+    <div class="filtraggi-btns">
       <!-- Ordinamento -->
       <mat-form-field appearance="fill">
         <mat-label>Ordina per</mat-label>
-        <mat-select [formControl]="ordinamentoControl" (valueChange)="ordinaPer()">
+        <mat-select
+          [formControl]="ordinamentoControl"
+          (valueChange)="ordinaPer()"
+        >
           <mat-optgroup [label]="'Voto'">
             <mat-option [value]="'voto-decrescente'" selected>
               Voto Decrescente
             </mat-option>
-            <mat-option [value]="'voto-crescente'">
-              Voto Crescente
-            </mat-option>
+            <mat-option [value]="'voto-crescente'"> Voto Crescente </mat-option>
           </mat-optgroup>
           <mat-optgroup [label]="'Titolo'">
             <mat-option [value]="'titolo-decrescente'" selected>
@@ -69,35 +40,57 @@
           </mat-optgroup>
         </mat-select>
       </mat-form-field>
-      
-       <!-- Ricerca globale -->
+
+      <!-- Ricerca globale -->
       <mat-form-field class="example-form-field">
         <mat-label>Cerca tra i titoli</mat-label>
-        <input matInput placeholder="Titolo" type="text" [(ngModel)]="keyRicerca">
-        <button *ngIf="keyRicerca" matSuffix mat-icon-button aria-label="Clear" (click)="keyRicerca=''">
+        <input
+          matInput
+          placeholder="Titolo"
+          type="text"
+          [(ngModel)]="keyRicerca"
+        />
+        <button
+          *ngIf="keyRicerca"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="keyRicerca = ''"
+        >
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
-      
-      <button mat-raised-button color="primary" (click)="ricerca(keyRicerca)">
+
+      <button mat-raised-button color="primary" id="btn-cerca" (click)="ricerca()">
         <mat-icon>search</mat-icon>
         Cerca
       </button>
-      </div>
+    </div>
   </section>
 
-<div *ngFor="let l of listaReview$ | async">
-
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>{{ l.title }}</mat-card-title>
-          <mat-card-subtitle>{{ "Reviewer : " + l.reviewerName }}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-actions align="end">
-          <button mat-button (click)="onDelete(l._id)">DELETE -</button>
-          <button mat-button [routerLink]="['/form-review', l._id]">DETAIL</button>
-        </mat-card-actions>
-      </mat-card>
-
-</div>
+  <div *ngFor="let l of listaReview$ | async">
+    <mat-card>
+      <mat-divider></mat-divider>
+      <mat-card-header>
+        <mat-card-title>{{ l.title }}</mat-card-title>
+        <mat-card-subtitle>{{
+          "Reviewer : " + l.reviewerName
+        }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <button
+          (click)="idDaEliminare = l._id; openDialog('300ms', '300ms')"
+          mat-button
+          color="warn"
+        >
+          <!--(click)="onClickDelete(v._id)"-->
+          <mat-icon>delete</mat-icon>
+          DELETE
+        </button>
+        <button mat-button [routerLink]="['/form-review', l._id]">
+          <mat-icon>edit</mat-icon>DETAIL
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

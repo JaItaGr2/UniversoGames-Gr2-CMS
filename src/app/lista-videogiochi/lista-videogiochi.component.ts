@@ -19,7 +19,7 @@ export class ListaVideogiochiComponent implements OnInit {
   videogiochi$!: Observable<Videogioco[]>;
   categorie$!: Observable<Categoria[]>;
   categorie = new FormControl('');
-  ordinamentoControl = new FormControl('data-decrescente');
+  ordinamentoControl = new FormControl('');  //'data-decrescente'
   idDaEliminare = '';
 
   constructor(
@@ -44,6 +44,12 @@ export class ListaVideogiochiComponent implements OnInit {
       }
       this.idDaEliminare = '';
     }); 
+  }
+
+  updateVideogiochi() {
+    this.videogiochi$ = this.videogiochiService.getVideogiochi();
+    this.categorie$ = this.categorieService.getCategorie();
+    this.ricerca();
   }
 
   onClickDelete() {

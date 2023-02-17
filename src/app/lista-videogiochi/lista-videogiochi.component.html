@@ -1,73 +1,5 @@
-<<<<<<< HEAD
-<!-- 
-<body>
-    <section>
-        <div class="contenitore-listavid"> 
-            <div class="scatola-listavid">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Titolo</th>
-                            <th>Console</th>
-                            <th>Data di uscita</th>
-                            <th>Genere</th>
-                            <th>Software house</th>
-                            <th>Publisher</th>
-                            <th>Numero di giocatori</th>
-                            <th>Linguaggio:</th>
-                            <th>Doppiaggio</th>
-                            <th>Sottotitoli</th>
-                            <th>Immagine Videogioco</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let v of videogiochi$ | async"> 
-                            <td>{{ v.title }}</td>
-                            <td>{{ v.category }}</td>
-                            <td>{{ v.releaseDate }}</td>
-                            <td>{{ v.genre }}</td>
-                            <td>{{ v.softwareHouse }}</td>
-                            <td>{{ v.publisher }}</td>
-                            <td>{{ v.numberOfPlayers }}</td>
-                            <td>{{ v.languages.voice }}</td>
-                            <td>{{ v.languages.text }}</td>
-                            <td>{{ v.coverImage }}</td>
-                            <td>
-                                <button (click)="onClickDelete(v._id)">Elimina</button>
-                                <button [routerLink]="['/nuovo-videogioco', v._id]" class="edit">
-                                    Edit
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button [routerLink]="['/nuovo-videogioco']" class="aggiungi">Nuovo videogioco</button>
-            </div>
-        </div>
-    <div class="ricerca">
-        <label>ricerca per keyword</label>
-        <select id="categoria">
-            <option selected>Cerca tutto</option>
-            <option value="title">titolo</option>
-            <option value="category">categoria</option>
-            <option value="releaseDate">data di rilascio</option>
-            <option value="genre">genere</option>
-            <option value="softwareHouse">Software House</option>
-            <option value="publisher">publisher</option>
-        </select>
-        <input type="text" class="input" [(ngModel)]="keyRicerca">
-        <button onclick=ricerca(keyRicerca)>Cerca</button>
-
-    </div>
-    </section>
-</body>
-
--->
-
-=======
->>>>>>> ca1597e119895ec43f903b16f28a8c1140277b86
 <div class="container">
-  <section style="padding: 0 0.5rem" class="top-section">
+  <section style="padding-left: 0.5rem" class="top-section">
     <div class="example-button-row">
       <button
         [routerLink]="['/nuovo-videogioco']"
@@ -75,11 +7,21 @@
         color="primary"
       >
         <mat-icon>add</mat-icon>
-        Add Game
+        Aggiungi Gioco
+      </button>
+
+      <!-- Aggiorna news -->
+      <button
+        mat-mini-fab
+        color="primary"
+        aria-label="Aggiorna videogiochi"
+        (click)="updateVideogiochi()"
+      >
+        <mat-icon>update</mat-icon>
       </button>
     </div>
 
-    <div>
+    <div class="filtraggi-btns">
       <!-- Ordinamento -->
       <mat-form-field appearance="fill">
         <mat-label>Ordina per</mat-label>
@@ -130,7 +72,7 @@
         </button>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" (click)="ricerca()">
+      <button mat-raised-button color="primary" id="btn-cerca" (click)="ricerca()">
         <mat-icon>search</mat-icon>
         Cerca
       </button>

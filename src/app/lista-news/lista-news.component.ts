@@ -6,43 +6,68 @@ import { FormControl } from '@angular/forms';
 import { map } from 'rxjs';
 import { Categoria } from '../model/categoria';
 import { CategorieService } from '../service/categorie.service';
-
+import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-lista-news',
   templateUrl: './lista-news.component.html',
-  styleUrls: ['./lista-news.component.css']
+  styleUrls: ['./lista-news.component.css'],
 })
-export class ListaNewsComponent implements OnInit{
-  dati$ !: Observable<news[]>;
+export class ListaNewsComponent implements OnInit {
+  dati$!: Observable<news[]>;
   categorie = new FormControl('');
   ordinamentoControl = new FormControl('');
   categorie$!: Observable<Categoria[]>;
   keyRicerca = '';
+  idDaEliminare = '';
 
-  constructor(private newsService: newsService,
-    private categorieService: CategorieService,){}
+  constructor(
+    private newsService: newsService,
+    private categorieService: CategorieService,
+    public dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
     this.dati$ = this.newsService.getNews();
     this.categorie$ = this.categorieService.getCategorie();
+    this.ricerca();
   }
 
-  onClickDelete(id: string){
-    this.newsService.deleteNews(id).subscribe(()=> {
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(DialogDeleteComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    }).afterClosed().subscribe(result => {
+      if (result) {
+        this.onClickDelete();
+      }
+      this.idDaEliminare = '';
+    }); 
+  }
+
+  onClickDelete() {
+    this.newsService.deleteNews(this.idDaEliminare).subscribe(() => {
       this.dati$ = this.newsService.getNews();
-    })
+    });
   }
 
-  onClickEdit(id: string) {}
+  updateNews() {
+    this.dati$ = this.newsService.getNews();
+    this.categorie$ = this.categorieService.getCategorie();
+    this.ricerca();
+  }
 
   ricerca() {
     this.dati$ = this.newsService.ricercaKey(this.keyRicerca);
-    if (this.categorie.value) {
-      this.dati$ = this.newsService.filtraCategorie(
-        this.categorie.value,
-        this.dati$
-      );
+    if (this.categorie) {
+      if (typeof this.categorie.value != 'string' && this.categorie.getRawValue()!.length != 0) {
+        this.dati$ = this.newsService.filtraCategorie(
+          this.categorie.getRawValue()!,
+          this.dati$
+        );
+      }
     }
     this.ordinaPer();
   }
